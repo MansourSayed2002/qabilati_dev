@@ -25,15 +25,14 @@ class ButtomFriendShip extends StatelessWidget {
     return BlocConsumer<RequestFriendCubit, RequestFriendState>(
       listener: (context, state) {
         if (state is RequestFriendSuccess) {
-          context.pop();
           user.friendStatus = state.data["friend_status"];
           user.userid = state.data["id"];
           user.friendReplay = state.data["friend_reply"];
           user.friendRequest = state.data["friend_request"];
           log(user.friendReplay.toString());
+          context.pop();
           NotificationsApp.sendNotification(
-            token:
-                "dNFMZbDDQnyAt1hg1z_1O_:APA91bFBlL3Mjoh81nLHrSNq3R4WcSq88DFrYHZkdzLSpt6p2MsXlFNy9RAhQnXoxFIdvtxHJwqkWvIj_NFqwGUaAjw90yfYjNijbow3EcBuZ6lfCozYsJg",
+            token: user.token.toString(),
             title: S.of(context).friend_request,
             body:
                 "${S.of(context).send_to_you} ${LocalStorageApp.getHiveData("user_data")['user_name']} ${S.of(context).friend_request}",
@@ -65,7 +64,7 @@ class ButtomFriendShip extends StatelessWidget {
                   },
                   onConfirme: () {
                     context.pop();
-                    cubit.unFriend(user.userid!);
+                    cubit.unFriend(user.friendid!);
                   },
                 );
               },
@@ -84,7 +83,7 @@ class ButtomFriendShip extends StatelessWidget {
                   },
                   onConfirme: () {
                     context.pop();
-                    cubit.unFriend(user.userid!);
+                    cubit.unFriend(user.friendid!);
                   },
                 );
               },
@@ -94,7 +93,6 @@ class ButtomFriendShip extends StatelessWidget {
               title: S.of(context).friend_request,
               icon: Icons.group_add_rounded,
               onTap: () {
-                context.pop();
                 cubit.requestFriend(user.userid!);
               },
             );

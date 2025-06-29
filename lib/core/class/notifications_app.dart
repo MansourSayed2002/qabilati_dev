@@ -25,6 +25,8 @@ class NotificationsApp {
     );
     client.close();
 
+    log(client.credentials.accessToken.data);
+
     return client.credentials.accessToken.data;
   }
 
@@ -36,6 +38,7 @@ class NotificationsApp {
   }) async {
     final String accessToken = await getAccessToken();
     final String fcmUrl = dotenv.env['FCM_URL'].toString();
+    log(dotenv.env['FCM_URL'].toString());
 
     final response = await http.post(
       Uri.parse(fcmUrl),

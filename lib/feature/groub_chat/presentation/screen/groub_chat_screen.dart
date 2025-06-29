@@ -86,6 +86,7 @@ class CustomBody extends StatelessWidget {
               image: groubsModel.image.toString(),
               title: groubsModel.name.toString(),
               onTap: () {
+                getIt<GroubChatCubit>().getGroupMembers(groubsModel.id ?? 0);
                 context.push(RealtimeGroubChatScreen(groub: groubsModel));
               },
             );

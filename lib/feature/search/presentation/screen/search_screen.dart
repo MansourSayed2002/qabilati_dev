@@ -85,7 +85,7 @@ class _SearchScreenState extends State<SearchScreen> {
                         )
                         : state is SearchError
                         ? Text("Error")
-                        : SizedBox();
+                        : SizedBox.shrink();
                   },
                 ),
               ),

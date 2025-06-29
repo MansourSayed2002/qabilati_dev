@@ -27,6 +27,7 @@ class CardGroubWidget extends StatelessWidget {
               width: 60.0.w,
               height: 60.0.h,
               imageUrl: "${dotenv.env['SUPABASE_URL_IMAGE']}$image",
+              errorWidget: (context, url, error) => const Icon(Icons.group),
               fit: BoxFit.cover,
             ),
           ),

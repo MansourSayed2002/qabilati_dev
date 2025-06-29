@@ -5,6 +5,7 @@ import 'package:qabilati/core/extension/navigator_app.dart';
 import 'package:qabilati/core/get_it/get_it.dart';
 import 'package:qabilati/core/shared/arrow_back_widget.dart';
 import 'package:qabilati/core/theme/color_app.dart';
+import 'package:qabilati/feature/chat_room/presentation/cubit/chat_room_cubit.dart';
 import 'package:qabilati/feature/chat_room/presentation/widget/send_message_widget.dart';
 import 'package:qabilati/feature/groub_chat/data/model/groubs_model.dart';
 import 'package:qabilati/feature/groub_chat/presentation/cubit/groub_chat_cubit.dart';
@@ -18,7 +19,7 @@ class RealtimeGroubChatScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider.value(
-      value: getIt<GroubChatCubit>()..getGroupMembers(groub.id ?? 0),
+      value: getIt<ChatRoomCubit>(),
       child: Scaffold(
         appBar: AppBar(
           leading: ArrowBackWidget(),
