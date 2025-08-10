@@ -6,8 +6,8 @@ import 'package:qabilati/core/theme/textstyle_app.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:gap/gap.dart';
 import 'package:qabilati/core/function/is_arabic.dart';
-import 'package:voice_note_kit/player/audio_player_widget.dart';
-import 'package:voice_note_kit/player/player_enums/player_enums.dart';
+// import 'package:voice_note_kit/player/audio_player_widget.dart';
+// import 'package:voice_note_kit/player/player_enums/player_enums.dart';
 import 'package:qabilati/core/enum/type_file.dart';
 import 'package:qabilati/core/function/open_any_files.dart';
 import 'dart:developer';
@@ -103,45 +103,45 @@ class ImageMessageWidget extends StatelessWidget {
   }
 }
 
-class MusicMessageWidget extends StatelessWidget {
-  const MusicMessageWidget({super.key, required this.message});
-  final MessageSenderModel message;
+// class MusicMessageWidget extends StatelessWidget {
+//   const MusicMessageWidget({super.key, required this.message});
+//   final MessageSenderModel message;
 
-  @override
-  Widget build(BuildContext context) {
-    return AudioPlayerWidget(
-      autoPlay: false,
-      autoLoad: false,
-      audioPath:
-          "${dotenv.env['SUPABASE_URL_RECORD']}${message.messageContent}",
-      audioType: AudioType.url,
-      playerStyle: PlayerStyle.style5,
-      textDirection:
-          message.messageSenderId ==
-                  LocalStorageApp.getHiveData("user_data")['user_id']
-              ? TextDirection.rtl
-              : TextDirection.rtl,
-      size: 50,
-      progressBarHeight: 3,
-      backgroundColor:
-          message.messageSenderId ==
-                  LocalStorageApp.getHiveData("user_data")['user_id']
-              ? ColorApp.coral
-              : ColorApp.midnightBlue,
-      progressBarColor: Colors.blue,
-      progressBarBackgroundColor: Colors.white,
-      iconColor: Colors.white,
-      shapeType: PlayIconShapeType.roundedRectangle,
-      showProgressBar: true,
-      showTimer: true,
-      width: 300.w,
-      audioSpeeds: const [0.5, 1.0, 1.5, 2.0, 3.0],
-      onError: (message) {
-        log(message);
-      },
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return AudioPlayerWidget(
+//       autoPlay: false,
+//       autoLoad: false,
+//       audioPath:
+//           "${dotenv.env['SUPABASE_URL_RECORD']}${message.messageContent}",
+//       audioType: AudioType.url,
+//       playerStyle: PlayerStyle.style5,
+//       textDirection:
+//           message.messageSenderId ==
+//                   LocalStorageApp.getHiveData("user_data")['user_id']
+//               ? TextDirection.rtl
+//               : TextDirection.rtl,
+//       size: 50,
+//       progressBarHeight: 3,
+//       backgroundColor:
+//           message.messageSenderId ==
+//                   LocalStorageApp.getHiveData("user_data")['user_id']
+//               ? ColorApp.coral
+//               : ColorApp.midnightBlue,
+//       progressBarColor: Colors.blue,
+//       progressBarBackgroundColor: Colors.white,
+//       iconColor: Colors.white,
+//       shapeType: PlayIconShapeType.roundedRectangle,
+//       showProgressBar: true,
+//       showTimer: true,
+//       width: 300.w,
+//       audioSpeeds: const [0.5, 1.0, 1.5, 2.0, 3.0],
+//       onError: (message) {
+//         log(message);
+//       },
+//     );
+//   }
+// }
 
 class VideoMessageWidget extends StatelessWidget {
   const VideoMessageWidget({super.key, required this.message});

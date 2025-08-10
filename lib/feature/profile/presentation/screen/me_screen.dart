@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:qabilati/core/class/local_storage.dart';
+import 'package:qabilati/core/extension/navigator_app.dart';
 import 'package:qabilati/core/theme/color_app.dart';
+import 'package:qabilati/feature/posts/presentation/screen/posts_screen.dart';
 import 'package:qabilati/feature/profile/presentation/widget/card_services_widget.dart';
 import 'package:qabilati/feature/profile/presentation/widget/personal_identification_card_widget.dart';
 import 'package:qabilati/generated/l10n.dart';
@@ -39,7 +41,9 @@ class MeScreen extends StatelessWidget {
             title: S.of(context).post,
             iconData: Icons.photo_size_select_actual_outlined,
             coloricon: Colors.lightBlue,
-            onTap: () {},
+            onTap: () {
+              context.push(PostsScreen());
+            },
           ),
           Divider(color: ColorApp.greyDa, thickness: 8.0),
           CardServicesWidget(

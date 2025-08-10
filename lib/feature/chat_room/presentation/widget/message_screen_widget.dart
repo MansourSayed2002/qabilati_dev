@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:qabilati/core/class/supabase_connect.dart';
 import 'package:qabilati/core/theme/color_app.dart';
 import 'package:qabilati/feature/chat_room/presentation/widget/message_widget.dart';
@@ -26,6 +27,7 @@ class MessageScreenWidget extends StatelessWidget {
           }
           return ListView.builder(
             reverse: true,
+            itemExtent: 100.0.h,
             itemCount: snapshot.data!.length,
             itemBuilder: (context, index) {
               MessageSenderModel message = MessageSenderModel.fromjson(

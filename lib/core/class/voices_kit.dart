@@ -9,10 +9,6 @@ class VoicesKit {
 
   final record = AudioRecorder();
 
-  dispose() {
-    record.dispose();
-  }
-
   Future<void> startRecording(int chatRoomId) async {
     if (await record.hasPermission()) {
       Directory documentdir = await getApplicationDocumentsDirectory();

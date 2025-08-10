@@ -54,6 +54,7 @@ class ShowFileWidget extends StatelessWidget {
                 child: GestureDetector(
                   onTap: () {
                     getIt<ChatRoomCubit>().changeShowFileToFalse();
+                    getIt<ChatRoomCubit>().changeTextButtonFalse();
                   },
                   child: Icon(Icons.cancel, color: ColorApp.red),
                 ),

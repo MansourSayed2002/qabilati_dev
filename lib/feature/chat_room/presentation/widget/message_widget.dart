@@ -53,8 +53,8 @@ class MessageWidget extends StatelessWidget {
                 ? ImageMessageWidget(message: message)
                 : message.messageType == 4
                 ? PdfMessageWidget(message: message)
-                : message.messageType == 6 || message.messageType == 1
-                ? MusicMessageWidget(message: message)
+                // : message.messageType == 6 || message.messageType == 1
+                // ? MusicMessageWidget(message: message)
                 : VideoMessageWidget(message: message),
       ),
     );

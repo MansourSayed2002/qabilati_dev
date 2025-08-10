@@ -23,8 +23,19 @@ class NetWorkImageWidget extends StatelessWidget {
       fit: fit ?? BoxFit.cover,
       height: height,
       width: width ?? double.infinity,
+      placeholder:
+          (context, url) => Container(
+            height: height,
+            width: width ?? double.infinity,
+            color: Colors.grey[200], // لون خفيف بدل الصورة
+            alignment: Alignment.center,
+            child: const Icon(Icons.image, color: Colors.grey),
+          ),
       errorWidget: (context, url, error) {
-        return Image.asset(ImageApp.user, fit: BoxFit.cover);
+        return Container(
+          color: Colors.grey[200],
+          child: Image.asset(ImageApp.user, fit: BoxFit.cover),
+        );
       },
     );
   }

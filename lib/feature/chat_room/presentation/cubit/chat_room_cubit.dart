@@ -19,12 +19,29 @@ class ChatRoomCubit extends Cubit<ChatRoomState> {
   bool emoji = false;
   bool showFile = false;
   bool file = false;
+  bool isRecord = false;
+  bool textbutton = false;
   TypeFileEnum typefileenum = TypeFileEnum.text;
   List path = [];
 
   changeFile() {
     file = !file;
     file ? emit(FileTrue()) : emit(FileFalse());
+  }
+
+  void changeTextButtonTrue() {
+    textbutton = true;
+    emit(TextButtonTrue());
+  }
+
+  void changeTextButtonFalse() {
+    textbutton = false;
+    emit(TextButtonFalse());
+  }
+
+  void toggleRecord() {
+    isRecord = !isRecord;
+    isRecord ? emit(RecordTrue()) : emit(RecordFalse());
   }
 
   void changeShowFileToTrue() {

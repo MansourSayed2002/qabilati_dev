@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:qabilati/core/enum/type_file.dart';
@@ -17,23 +18,32 @@ class SendMessageWidget extends StatelessWidget {
   final int chatRoomId;
   @override
   Widget build(BuildContext context) {
+    var textButton = context.select(
+      (ChatRoomCubit chatRoomCubit) => chatRoomCubit.textbutton,
+    );
     return Column(
       children: [
         ShowFileWidget(),
         SendDifferentTypesOfFile(),
         Row(
           children: [
-            TextButton(
-              onPressed: () {
-                getIt<ChatRoomCubit>().sendMessage(chatRoomId);
-                getIt<ChatRoomCubit>().changeShowFileToFalse();
-                getIt<ChatRoomCubit>().textcontroller.clear();
-              },
-              child: Text(
-                S.of(context).send,
-                style: getBodyStyle(context: context, color: Colors.blueAccent),
-              ),
-            ),
+            textButton
+                ? TextButton(
+                  onPressed: () async {
+                    await getIt<ChatRoomCubit>().sendMessage(chatRoomId);
+                    getIt<ChatRoomCubit>().changeShowFileToFalse();
+                    getIt<ChatRoomCubit>().changeTextButtonFalse();
+                    getIt<ChatRoomCubit>().textcontroller.clear();
+                  },
+                  child: Text(
+                    S.of(context).send,
+                    style: getBodyStyle(
+                      context: context,
+                      color: Colors.blueAccent,
+                    ),
+                  ),
+                )
+                : RecorderWidget(chatRoomId: chatRoomId),
             Expanded(
               child: Padding(
                 padding: EdgeInsets.symmetric(
@@ -44,6 +54,13 @@ class SendMessageWidget extends StatelessWidget {
                   onTap: () {
                     getIt<ChatRoomCubit>().typefileenum = TypeFileEnum.text;
                     getIt<ChatRoomCubit>().changeEmojiToFalse();
+                  },
+                  onChanged: (value) {
+                    if (value.trim().isNotEmpty) {
+                      getIt<ChatRoomCubit>().changeTextButtonTrue();
+                    } else {
+                      getIt<ChatRoomCubit>().changeTextButtonFalse();
+                    }
                   },
                   controller: getIt<ChatRoomCubit>().textcontroller,
                   focusNode: getIt<ChatRoomCubit>().focusNode,
@@ -57,7 +74,6 @@ class SendMessageWidget extends StatelessWidget {
                 ),
               ),
             ),
-            RecorderWidget(chatRoomId: chatRoomId),
             IconButton(
               onPressed: () {
                 getIt<ChatRoomCubit>().changeFile();
