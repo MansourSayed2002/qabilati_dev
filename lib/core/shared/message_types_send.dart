@@ -6,11 +6,8 @@ import 'package:qabilati/core/theme/textstyle_app.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:gap/gap.dart';
 import 'package:qabilati/core/function/is_arabic.dart';
-// import 'package:voice_note_kit/player/audio_player_widget.dart';
-// import 'package:voice_note_kit/player/player_enums/player_enums.dart';
 import 'package:qabilati/core/enum/type_file.dart';
 import 'package:qabilati/core/function/open_any_files.dart';
-import 'dart:developer';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:qabilati/feature/groub_chat/data/model/message_sender_model.dart';
 
