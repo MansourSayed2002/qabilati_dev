@@ -43,6 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
           if (state is LogInLoading) {
             loadingWidget(context);
           } else if (state is LogInSuccess) {
+            context.pop();
             context.push(VerifycodeScreen(type: TypeEnum.login));
           } else if (state is LogInError) {
             context.pop();

@@ -24,3 +24,9 @@ class ImageApp {
   static const String uniondark = 'asset/icon/Uniondark.svg';
   static const String vector = 'asset/icon/Vector.svg';
 }
+
+class LottieApp {
+  static const String loading = 'asset/lottie/loading1.json';
+  static const String transaction =
+      'asset/lottie/Transaction Confirmation.json';
+}

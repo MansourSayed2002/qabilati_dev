@@ -101,7 +101,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "no": MessageLookupByLibrary.simpleMessage("لا"),
     "not_connect_yet": MessageLookupByLibrary.simpleMessage("لم تتصل بعد؟ "),
     "notification": MessageLookupByLibrary.simpleMessage("إشعارات"),
-    "pay": MessageLookupByLibrary.simpleMessage("الدفع والخدمات"),
+    "wallet": MessageLookupByLibrary.simpleMessage("محفظتي"),
     "pending": MessageLookupByLibrary.simpleMessage("قيد الانتظار"),
     "phone_number": MessageLookupByLibrary.simpleMessage("رقم التليفون"),
     "post": MessageLookupByLibrary.simpleMessage("منشوراتي"),

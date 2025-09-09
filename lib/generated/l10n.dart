@@ -401,8 +401,8 @@ class S {
   }
 
   /// `Pay and Services`
-  String get pay {
-    return Intl.message('Pay and Services', name: 'pay', desc: '', args: []);
+  String get wallet {
+    return Intl.message('My Wallet', name: 'wallet', desc: '', args: []);
   }
 
   /// `Post`

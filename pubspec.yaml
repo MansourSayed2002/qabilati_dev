@@ -66,6 +66,7 @@ dependencies:
   zego_uikit_signaling_plugin: ^2.8.13
   zego_uikit_prebuilt_call: ^4.17.2
   flutter_offline: ^5.0.0
+  lottie: ^3.3.1
 
 dependency_overrides:
   permission_handler: ^12.0.0+1
@@ -101,6 +102,7 @@ flutter:
     - asset/image/
     - asset/icon/
     - asset/json/
+    - asset/lottie/
     - .env
 
   # An image asset can refer to one or more resolution-specific "variants", see

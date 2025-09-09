@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:qabilati/core/class/local_storage.dart';
 import 'package:qabilati/core/extension/navigator_app.dart';
 import 'package:qabilati/core/theme/color_app.dart';
+import 'package:qabilati/feature/auth/presentation/screen/login_screen.dart';
 import 'package:qabilati/feature/posts/presentation/screen/posts_screen.dart';
 import 'package:qabilati/feature/profile/presentation/widget/card_services_widget.dart';
 import 'package:qabilati/feature/profile/presentation/widget/personal_identification_card_widget.dart';
@@ -24,8 +25,8 @@ class MeScreen extends StatelessWidget {
           ),
           Divider(color: ColorApp.greyDa, thickness: 8.0),
           CardServicesWidget(
-            title: S.of(context).pay,
-            iconData: Icons.paypal_outlined,
+            title: S.of(context).wallet,
+            iconData: Icons.account_balance_wallet_outlined,
             coloricon: Colors.greenAccent,
             onTap: () {},
           ),
@@ -51,6 +52,16 @@ class MeScreen extends StatelessWidget {
             iconData: Icons.settings_outlined,
             coloricon: Colors.blue,
             onTap: () {},
+          ),
+          Divider(color: ColorApp.greymiddle),
+          CardServicesWidget(
+            title: S.of(context).logout,
+            iconData: Icons.logout_outlined,
+            coloricon: Colors.blue,
+            onTap: () {
+              LocalStorageApp.clearStorage();
+              context.removeUntile(LoginScreen());
+            },
           ),
         ],
       ),

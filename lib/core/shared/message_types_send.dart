@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:qabilati/core/class/local_storage.dart';
+import 'package:qabilati/core/shared/net_work_image_widget.dart';
 import 'package:qabilati/core/theme/color_app.dart';
 import 'package:qabilati/core/theme/textstyle_app.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -87,13 +88,12 @@ class ImageMessageWidget extends StatelessWidget {
                   bottomRight: Radius.circular(8.0.r),
                   topLeft: Radius.circular(8.0.r),
                 ),
-        child: CachedNetworkImage(
+        child: NetWorkImageWidget(
           height: 100.0.h,
           width: 100.0.w,
           fit: BoxFit.cover,
-          imageUrl:
-              "${dotenv.env['SUPABASE_URL_IMAGE']}${message.messageContent}",
-          errorWidget: (context, url, error) => const Icon(Icons.error),
+
+          image: "${dotenv.env['SUPABASE_URL_IMAGE']}${message.messageContent}",
         ),
       ),
     );
