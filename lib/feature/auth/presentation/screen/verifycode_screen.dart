@@ -69,7 +69,7 @@ class _VerifycodeScreenState extends State<VerifycodeScreen> {
                     style: getSmallStyle(color: ColorApp.midnightBlue),
                   ),
                 )
-                : SizedBox(),
+                : SizedBox.shrink(),
           ],
         ),
         body: BlocListener<AuthCubit, AuthState>(

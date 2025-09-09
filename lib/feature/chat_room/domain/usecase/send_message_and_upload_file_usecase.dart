@@ -19,13 +19,13 @@ class SendMessageAndUploadFileUsecase {
     File file,
   ) async {
     try {
+      await chatRoomRepoAbs.uploadFiles(typefile, content, file);
       await chatRoomRepoAbs.sendMessage({
         "message_content": content,
         "message_sender": LocalStorageApp.getHiveData("user_data")['user_id'],
         "message_type": uploadTypeFile(typefile),
         "message_roomchat_id": roomChatId,
       });
-      await chatRoomRepoAbs.uploadFiles(typefile, content, file);
       return ApiSuccess(StatusRequest.success);
     } catch (e) {
       log("error in upload file");

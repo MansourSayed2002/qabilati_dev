@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:qabilati/core/class/local_storage.dart';
+import 'package:qabilati/core/shared/net_work_image_widget.dart';
 import 'package:qabilati/core/theme/color_app.dart';
 import 'package:qabilati/core/theme/textstyle_app.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:gap/gap.dart';
 import 'package:qabilati/core/function/is_arabic.dart';
-// import 'package:voice_note_kit/player/audio_player_widget.dart';
-// import 'package:voice_note_kit/player/player_enums/player_enums.dart';
 import 'package:qabilati/core/enum/type_file.dart';
 import 'package:qabilati/core/function/open_any_files.dart';
-import 'dart:developer';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:qabilati/feature/groub_chat/data/model/message_sender_model.dart';
 
@@ -90,13 +88,12 @@ class ImageMessageWidget extends StatelessWidget {
                   bottomRight: Radius.circular(8.0.r),
                   topLeft: Radius.circular(8.0.r),
                 ),
-        child: CachedNetworkImage(
+        child: NetWorkImageWidget(
           height: 100.0.h,
           width: 100.0.w,
           fit: BoxFit.cover,
-          imageUrl:
-              "${dotenv.env['SUPABASE_URL_IMAGE']}${message.messageContent}",
-          errorWidget: (context, url, error) => const Icon(Icons.error),
+
+          image: "${dotenv.env['SUPABASE_URL_IMAGE']}${message.messageContent}",
         ),
       ),
     );

@@ -34,7 +34,7 @@ class ChatRoomScreen extends StatelessWidget {
             IconButton(
               onPressed: () {
                 ZegoUIKitPrebuiltCallInvitationService().send(
-                  resourceID: "mansourzegoapp",
+                  resourceID: "mansourZegoApp",
                   invitees: [
                     ZegoCallUser(
                       friend.userid.toString(),
@@ -49,7 +49,7 @@ class ChatRoomScreen extends StatelessWidget {
             IconButton(
               onPressed: () {
                 ZegoUIKitPrebuiltCallInvitationService().send(
-                  resourceID: "mansourzegoapp",
+                  resourceID: "mansourZegoApp",
                   invitees: [
                     ZegoCallUser(
                       friend.userid.toString(),
