@@ -3,9 +3,9 @@ import 'package:flutter_svg/svg.dart';
 import 'package:qabilati/core/constants/image_app.dart';
 import 'package:qabilati/core/function/choose_image_bar.dart';
 import 'package:qabilati/feature/chats/presentation/screen/chats_screen.dart';
-import 'package:qabilati/feature/discover/presentation/screen/discover_screen.dart';
 import 'package:qabilati/feature/friends/presentation/screen/friend_screen.dart';
 import 'package:qabilati/feature/main/widget/leading_buttom_bar.dart';
+import 'package:qabilati/feature/posts/presentation/screen/posts_screen.dart';
 import 'package:qabilati/feature/profile/presentation/screen/me_screen.dart';
 import 'package:qabilati/generated/l10n.dart';
 
@@ -21,7 +21,7 @@ class _MainScreenState extends State<MainScreen> {
   List<Widget> screens = [
     ChatsScreen(),
     FriendScreen(),
-    DiscoverScreen(),
+    PostsScreen(),
     MeScreen(),
   ];
   @override
@@ -35,7 +35,7 @@ class _MainScreenState extends State<MainScreen> {
               : currentIndex == 1
               ? S.of(context).friends
               : currentIndex == 2
-              ? S.of(context).discover
+              ? S.of(context).post
               : S.of(context).me,
         ),
         leading: currentIndex != 3 ? LeadingButtomBar() : SizedBox(),
@@ -64,11 +64,9 @@ class _MainScreenState extends State<MainScreen> {
             label: S.of(context).friends,
           ),
           BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              chooseImageBar(ImageApp.discover2, ImageApp.discover3),
-            ),
-            activeIcon: SvgPicture.asset(ImageApp.discover1),
-            label: S.of(context).discover,
+            icon: Icon(Icons.photo_outlined),
+            activeIcon: Icon(Icons.photo),
+            label: S.of(context).post,
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(

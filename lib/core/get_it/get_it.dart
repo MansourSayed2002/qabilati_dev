@@ -34,6 +34,10 @@ import 'package:qabilati/feature/notification/domain/usecase/accept_request_frie
 import 'package:qabilati/feature/notification/domain/usecase/get_notification_usecase.dart';
 import 'package:qabilati/feature/notification/domain/usecase/reject_request_friend_usecase.dart';
 import 'package:qabilati/feature/notification/presentation/cubit/notifications_cubit.dart';
+import 'package:qabilati/feature/posts/data/repo_imp/post_repo_imp.dart';
+import 'package:qabilati/feature/posts/domain/repo_abs/post_repo_abs.dart';
+import 'package:qabilati/feature/posts/domain/usecase/get_all_posts_usecase.dart';
+import 'package:qabilati/feature/posts/presentation/cubit/posts_cubit.dart';
 import 'package:qabilati/feature/request_friend/data/repo_imp/repo_request_friend_imp.dart';
 import 'package:qabilati/feature/request_friend/domain/repo_abs/repo_request_friend_abs.dart';
 import 'package:qabilati/feature/request_friend/domain/usecase/change_status_usecase.dart';
@@ -66,6 +70,7 @@ Future<void> setUp() async {
   getIt.registerLazySingleton<ChatRoomRepoAbs>(() => ChatRoomRepoImp());
   getIt.registerLazySingleton<GroubchatRepoAbs>(() => GroubChatRepoImp());
   getIt.registerLazySingleton<ChatsRepoAbs>(() => ChatsRepoImp());
+  getIt.registerLazySingleton<PostRepoAbs>(() => PostRepoImp());
 
   //===============================USECASE========================================
   getIt.registerLazySingleton(() => LoginUsecase(getIt.get<RepoAbs>()));
@@ -138,6 +143,9 @@ Future<void> setUp() async {
   );
 
   getIt.registerLazySingleton(() => GetChatsUsecase(getIt.get<ChatsRepoAbs>()));
+  getIt.registerLazySingleton(
+    () => GetAllPostsUsecase(getIt.get<PostRepoAbs>()),
+  );
 
   //===============================CUBIT STATREMANGEMENT==========================
 
@@ -191,6 +199,10 @@ Future<void> setUp() async {
     ),
   );
   getIt.registerLazySingleton(() => ChatsCubit(getIt.get<GetChatsUsecase>()));
+
+  getIt.registerLazySingleton(
+    () => PostsCubit(getIt.get<GetAllPostsUsecase>()),
+  );
 
   //=============================== CHECK INITIALIZATION ==========================
   await getIt.allReady();

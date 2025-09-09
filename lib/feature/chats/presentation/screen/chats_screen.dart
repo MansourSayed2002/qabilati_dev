@@ -72,36 +72,33 @@ class CustomBodyChats extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ChatsCubit, ChatsState>(
-      builder: (context, state) {
-        var cubit = getIt<ChatsCubit>();
-        return ListView.separated(
-          itemCount: cubit.chat.length,
-          separatorBuilder: (context, index) => Gap(8.0.h),
-          itemBuilder:
-              (context, index) => CardChatsWidget(
-                image: cubit.chat[index].image.toString(),
-                title: cubit.chat[index].username.toString(),
-                subtitle: cubit.chat[index].lastMessage.toString(),
-                onTap: () {
-                  context.push(
-                    ChatRoomScreen(
-                      friend: FriendsModel(
-                        userid: cubit.chat[index].userid,
-                        email: cubit.chat[index].email,
-                        phone: cubit.chat[index].phone,
-                        image: cubit.chat[index].image,
-                        token: cubit.chat[index].token,
-                        username: cubit.chat[index].username,
-                        uuid: cubit.chat[index].uuid,
-                      ),
-                      chatRoomId: cubit.chat[index].chatId ?? 0,
-                    ),
-                  );
-                },
-              ),
-        );
-      },
+    final chats = context.select((ChatsCubit cubit) => cubit.chat);
+
+    return ListView.separated(
+      itemCount: chats.length,
+      separatorBuilder: (context, index) => Gap(8.0.h),
+      itemBuilder:
+          (context, index) => CardChatsWidget(
+            image: chats[index].image.toString(),
+            title: chats[index].username.toString(),
+            subtitle: chats[index].lastMessage.toString(),
+            onTap: () {
+              context.push(
+                ChatRoomScreen(
+                  friend: FriendsModel(
+                    userid: chats[index].userid,
+                    email: chats[index].email,
+                    phone: chats[index].phone,
+                    image: chats[index].image,
+                    token: chats[index].token,
+                    username: chats[index].username,
+                    uuid: chats[index].uuid,
+                  ),
+                  chatRoomId: chats[index].chatId ?? 0,
+                ),
+              );
+            },
+          ),
     );
   }
 }

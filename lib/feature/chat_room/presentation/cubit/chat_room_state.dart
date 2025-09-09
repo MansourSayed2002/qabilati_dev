@@ -16,3 +16,11 @@ final class ShowFileTrue extends ChatRoomState {}
 final class FileTrue extends ChatRoomState {}
 
 final class FileFalse extends ChatRoomState {}
+
+final class RecordTrue extends ChatRoomState {}
+
+final class RecordFalse extends ChatRoomState {}
+
+final class TextButtonTrue extends ChatRoomState {}
+
+final class TextButtonFalse extends ChatRoomState {}

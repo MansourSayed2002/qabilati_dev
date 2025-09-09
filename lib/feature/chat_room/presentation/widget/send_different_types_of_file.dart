@@ -39,6 +39,8 @@ class SendDifferentTypesOfFile extends StatelessWidget {
                       getIt<ChatRoomCubit>().path.add(File(filePath));
                       getIt<ChatRoomCubit>().changeFile();
                       getIt<ChatRoomCubit>().changeShowFileToTrue();
+                      getIt<ChatRoomCubit>().changeTextButtonTrue();
+
                     }
                   },
                 ),
@@ -57,6 +59,8 @@ class SendDifferentTypesOfFile extends StatelessWidget {
                       getIt<ChatRoomCubit>().path = files;
                       getIt<ChatRoomCubit>().changeFile();
                       getIt<ChatRoomCubit>().changeShowFileToTrue();
+                      getIt<ChatRoomCubit>().changeTextButtonTrue();
+
                     }
                   },
                 ),
@@ -73,6 +77,8 @@ class SendDifferentTypesOfFile extends StatelessWidget {
                       getIt<ChatRoomCubit>().path = files;
                       getIt<ChatRoomCubit>().changeFile();
                       getIt<ChatRoomCubit>().changeShowFileToTrue();
+                      getIt<ChatRoomCubit>().changeTextButtonTrue();
+
                     }
                   },
                 ),
@@ -89,6 +95,8 @@ class SendDifferentTypesOfFile extends StatelessWidget {
                       getIt<ChatRoomCubit>().path = files;
                       getIt<ChatRoomCubit>().changeFile();
                       getIt<ChatRoomCubit>().changeShowFileToTrue();
+                      getIt<ChatRoomCubit>().changeTextButtonTrue();
+
                     }
                   },
                 ),
@@ -105,6 +113,8 @@ class SendDifferentTypesOfFile extends StatelessWidget {
                       getIt<ChatRoomCubit>().path = files;
                       getIt<ChatRoomCubit>().changeFile();
                       getIt<ChatRoomCubit>().changeShowFileToTrue();
+                      getIt<ChatRoomCubit>().changeTextButtonTrue();
+
                     }
                   },
                 ),

@@ -4,6 +4,7 @@ import 'package:qabilati/core/class/local_storage.dart';
 import 'package:qabilati/core/theme/theme_app.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:qabilati/feature/intro/splash_screen.dart';
+import 'package:qabilati/feature/wallet/presentation/screen/my_wallet_screen.dart';
 import 'package:qabilati/generated/l10n.dart';
 
 class QabilatiApp extends StatelessWidget {
@@ -31,7 +32,7 @@ class QabilatiApp extends StatelessWidget {
               LocalStorageApp.getData("theme") == "dark"
                   ? ThemeApp.dark
                   : ThemeApp.light,
-          home: SplashScreen(),
+          home: MyWalletScreen(),
         );
       },
     );

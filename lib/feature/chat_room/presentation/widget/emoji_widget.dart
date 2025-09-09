@@ -17,7 +17,6 @@ class EmojiWidget extends StatelessWidget {
       builder: (context, state) {
         if (state is EmojiTrue) {
           return SizedBox(
-            height: 300.0.h,
             child: EmojiPicker(
               textEditingController: getIt<ChatRoomCubit>().textcontroller,
               config: Config(

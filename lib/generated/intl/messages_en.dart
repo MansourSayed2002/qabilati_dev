@@ -106,7 +106,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Not connected yet?",
     ),
     "notification": MessageLookupByLibrary.simpleMessage("Notifications"),
-    "pay": MessageLookupByLibrary.simpleMessage("Pay and Services"),
+    "wallet": MessageLookupByLibrary.simpleMessage("My Wallet"),
     "pending": MessageLookupByLibrary.simpleMessage("Pending"),
     "phone_number": MessageLookupByLibrary.simpleMessage("Phone number"),
     "post": MessageLookupByLibrary.simpleMessage("Post"),

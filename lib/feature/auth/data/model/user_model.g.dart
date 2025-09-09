@@ -63,21 +63,21 @@ class UserModelAdapter extends TypeAdapter<UserModel> {
 // **************************************************************************
 
 UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
-      id: (json['id'] as num?)?.toInt(),
-      email: json['email'] as String?,
-      username: json['username'] as String?,
-      phone: json['phone'] as String?,
-      image: json['image'] as String?,
-      uuid: json['uuid'] as String?,
-      token: json['token'] as String?,
-    );
+  id: (json['user_id'] as num?)?.toInt(),
+  email: json['user_emailgoogle'] as String?,
+  username: json['user_name'] as String?,
+  phone: json['user_phone'] as String?,
+  image: json['user_image'] as String?,
+  uuid: json['user_uuid'] as String?,
+  token: json['user_token'] as String?,
+);
 
 Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
-      'id': instance.id,
-      'uuid': instance.uuid,
-      'email': instance.email,
-      'username': instance.username,
-      'phone': instance.phone,
-      'image': instance.image,
-      'token': instance.token,
-    };
+  'user_id': instance.id,
+  'user_uuid': instance.uuid,
+  'user_emailgoogle': instance.email,
+  'user_name': instance.username,
+  'user_phone': instance.phone,
+  'user_image': instance.image,
+  'user_token': instance.token,
+};
