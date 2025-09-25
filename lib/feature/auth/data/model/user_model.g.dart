@@ -24,13 +24,14 @@ class UserModelAdapter extends TypeAdapter<UserModel> {
       image: fields[5] as String?,
       uuid: fields[1] as String?,
       token: fields[6] as String?,
+      isActiveWallet: fields[7] as bool?,
     );
   }
 
   @override
   void write(BinaryWriter writer, UserModel obj) {
     writer
-      ..writeByte(7)
+      ..writeByte(8)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -44,7 +45,9 @@ class UserModelAdapter extends TypeAdapter<UserModel> {
       ..writeByte(5)
       ..write(obj.image)
       ..writeByte(6)
-      ..write(obj.token);
+      ..write(obj.token)
+      ..writeByte(7)
+      ..write(obj.isActiveWallet);
   }
 
   @override
@@ -63,21 +66,23 @@ class UserModelAdapter extends TypeAdapter<UserModel> {
 // **************************************************************************
 
 UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
-  id: (json['user_id'] as num?)?.toInt(),
-  email: json['user_emailgoogle'] as String?,
-  username: json['user_name'] as String?,
-  phone: json['user_phone'] as String?,
-  image: json['user_image'] as String?,
-  uuid: json['user_uuid'] as String?,
-  token: json['user_token'] as String?,
-);
+      id: (json['user_id'] as num?)?.toInt(),
+      email: json['user_emailgoogle'] as String?,
+      username: json['user_name'] as String?,
+      phone: json['user_phone'] as String?,
+      image: json['user_image'] as String?,
+      uuid: json['user_uuid'] as String?,
+      token: json['user_token'] as String?,
+      isActiveWallet: json['active_wallet'] as bool?,
+    );
 
 Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
-  'user_id': instance.id,
-  'user_uuid': instance.uuid,
-  'user_emailgoogle': instance.email,
-  'user_name': instance.username,
-  'user_phone': instance.phone,
-  'user_image': instance.image,
-  'user_token': instance.token,
-};
+      'user_id': instance.id,
+      'user_uuid': instance.uuid,
+      'user_emailgoogle': instance.email,
+      'user_name': instance.username,
+      'user_phone': instance.phone,
+      'user_image': instance.image,
+      'user_token': instance.token,
+      'active_wallet': instance.isActiveWallet,
+    };

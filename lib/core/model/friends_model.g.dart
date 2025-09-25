@@ -7,30 +7,32 @@ part of 'friends_model.dart';
 // **************************************************************************
 
 FriendsModel _$FriendsModelFromJson(Map<String, dynamic> json) => FriendsModel(
-  friendid: (json['id'] as num?)?.toInt(),
-  email: json['user_emailgoogle'] as String?,
-  friendStatus: (json['friend_status'] as num?)?.toInt(),
-  image: json['user_image'] as String?,
-  phone: json['user_phone'] as String?,
-  username: json['user_name'] as String?,
-  uuid: json['user_uuid'] as String?,
   friendReplay: (json['friend_reply'] as num?)?.toInt(),
   friendRequest: (json['friend_request'] as num?)?.toInt(),
-  userid: (json['user_id'] as num?)?.toInt(),
-  token: json['user_token'] as String?,
+  friendStatus: (json['friend_status'] as num?)?.toInt(),
+  friendid: (json['id'] as num?)?.toInt(),
+  userModel: UserModel(
+    id: (json['user_id'] as num?)?.toInt(),
+    email: json['user_emailgoogle'] as String?,
+    image: json['user_image'] as String?,
+    phone: json['user_phone'] as String?,
+    token: json['user_token'] as String?,
+    username: json['user_name'] as String?,
+    uuid: json['user_uuid'] as String?,
+  ),
 );
 
 Map<String, dynamic> _$FriendsModelToJson(FriendsModel instance) =>
     <String, dynamic>{
-      'user_id': instance.userid,
-      'id': instance.friendid,
-      'user_name': instance.username,
-      'user_emailgoogle': instance.email,
-      'user_phone': instance.phone,
-      'user_image': instance.image,
-      'user_uuid': instance.uuid,
-      'user_token': instance.token,
-      'friend_Status': instance.friendStatus,
-      'friend_Replay': instance.friendReplay,
-      'friend_Request': instance.friendRequest,
+      'friend_status': instance.friendStatus,
+      'friend_reply': instance.friendReplay,
+      'friend_request': instance.friendRequest,
+      "id": instance.friendid,
+      'user_id': instance.userModel?.id,
+      'user_name': instance.userModel?.username,
+      'user_uuid': instance.userModel?.uuid,
+      'user_token': instance.userModel?.token,
+      'user_phone': instance.userModel?.phone,
+      'user_image': instance.userModel?.image,
+      'user_emailgoogle': instance.userModel?.email,
     };

@@ -141,5 +141,26 @@ class MessageLookup extends MessageLookupByLibrary {
       "من خلال المتابعة، فإنك توافق على شروطنا وأحكامنا وسياسة الخصوصية الخاصة بنا",
     ),
     "yes": MessageLookupByLibrary.simpleMessage("نعم"),
+    "active_mywallet": MessageLookupByLibrary.simpleMessage("تفعيل محفظتي"),
+    "enter_pin": MessageLookupByLibrary.simpleMessage(
+      "أدخل الرمز المكون من 4 أرقام للمحفظة",
+    ),
+    "fingerprint": MessageLookupByLibrary.simpleMessage(
+      "استخدم البصمة لتسجيل الدخول بسرعة وأمان",
+    ),
+    "finish": MessageLookupByLibrary.simpleMessage("انهاء"),
+    "wallet_des": MessageLookupByLibrary.simpleMessage(
+      "هنا يمكنك عرض رصيدك وجميع معاملاتك المالية.",
+    ),
+    "current_balance": MessageLookupByLibrary.simpleMessage("Current Balance"),
+    "add_fund": MessageLookupByLibrary.simpleMessage("إضافة أموال"),
+    "withdraw_unds": MessageLookupByLibrary.simpleMessage("سحب الأموال"),
+    "recent_transactions": MessageLookupByLibrary.simpleMessage(
+      "المعاملات الأخيرة",
+    ),
+    "amount_add": MessageLookupByLibrary.simpleMessage("المبلغ المراد اضافته"),
+    "choose_payment": MessageLookupByLibrary.simpleMessage("اختر طريقه الدفع "),
+    "credit_card": MessageLookupByLibrary.simpleMessage("بطاقة الائتمان"),
+    "money_by_phone": MessageLookupByLibrary.simpleMessage("المال عبر الهاتف"),
   };
 }

@@ -23,6 +23,7 @@ class ImageApp {
   static const String union = 'asset/icon/Union.svg';
   static const String uniondark = 'asset/icon/Uniondark.svg';
   static const String vector = 'asset/icon/Vector.svg';
+  static const String error = 'asset/image/error.gif';
 }
 
 class LottieApp {

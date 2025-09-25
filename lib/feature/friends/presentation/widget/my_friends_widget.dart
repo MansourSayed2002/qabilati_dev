@@ -84,13 +84,14 @@ class CardFriend extends StatelessWidget {
                 width: 60.0.w,
                 height: 60.0.h,
                 fit: BoxFit.cover,
-                image: "${dotenv.env['SUPABASE_URL_IMAGE']}${friends.image}",
+                image:
+                    "${dotenv.env['SUPABASE_URL_IMAGE']}${friends.userModel?.image}",
               ),
             ),
             Gap(10.0.h),
             Expanded(
               child: Text(
-                friends.username.toString(),
+                "${friends.userModel?.username}",
                 style: getBodyStyle(context: context),
               ),
             ),

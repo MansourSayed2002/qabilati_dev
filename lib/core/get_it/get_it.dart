@@ -1,5 +1,4 @@
 import 'package:get_it/get_it.dart';
-import 'package:qabilati/core/class/supabase_connect.dart';
 import 'package:qabilati/feature/auth/data/repo_imp/repo_imp.dart';
 import 'package:qabilati/feature/auth/domain/repo_abs/repo_abs.dart';
 import 'package:qabilati/feature/auth/domain/usecase/check_verify.dart';
@@ -52,12 +51,19 @@ import 'package:qabilati/feature/friends/domain/usecase/accept_friend_usecase.da
 import 'package:qabilati/feature/friends/domain/usecase/get_chat_room_usecase.dart';
 import 'package:qabilati/feature/friends/domain/usecase/get_pending_friend_request_usecase.dart';
 import 'package:qabilati/feature/friends/domain/usecase/reject_friend_usecase.dart';
+import 'package:qabilati/feature/wallet/domain/repo_abs/wallet_repo_abs.dart';
+import 'package:qabilati/feature/wallet/domain/usecase/active_mywallet_usecase.dart';
+import 'package:qabilati/feature/wallet/domain/usecase/change_wallet_balance_uswecase.dart';
+import 'package:qabilati/feature/wallet/domain/usecase/fetch_payment_info_usecase.dart';
+import 'package:qabilati/feature/wallet/domain/usecase/get_url_payment_method_usecase.dart';
+import 'package:qabilati/feature/wallet/domain/usecase/get_wallet_usercase.dart';
+import 'package:qabilati/feature/wallet/domain/usecase/save_transactions_usecase.dart';
+import 'package:qabilati/feature/wallet/presentation/cubit/my_wallet_cubit.dart';
+import 'package:qabilati/feature/wallet/data/repo_imp/wallet_repo_imp.dart';
 
 final GetIt getIt = GetIt.instance;
 
 Future<void> setUp() async {
-  //===============================DATABASE CONNTECTION===========================
-  getIt.registerLazySingleton(() => SupabaseConnect.instance);
   //===============================REPOSITORY=====================================
   getIt.registerLazySingleton<RepoAbs>(() => RepoImp());
   getIt.registerLazySingleton<RepoAbsSearch>(() => RepoImpSearch());
@@ -71,6 +77,7 @@ Future<void> setUp() async {
   getIt.registerLazySingleton<GroubchatRepoAbs>(() => GroubChatRepoImp());
   getIt.registerLazySingleton<ChatsRepoAbs>(() => ChatsRepoImp());
   getIt.registerLazySingleton<PostRepoAbs>(() => PostRepoImp());
+  getIt.registerLazySingleton<WalletRepoAbs>(() => WalletRepoImp());
 
   //===============================USECASE========================================
   getIt.registerLazySingleton(() => LoginUsecase(getIt.get<RepoAbs>()));
@@ -143,10 +150,36 @@ Future<void> setUp() async {
   );
 
   getIt.registerLazySingleton(() => GetChatsUsecase(getIt.get<ChatsRepoAbs>()));
+
   getIt.registerLazySingleton(
     () => GetAllPostsUsecase(getIt.get<PostRepoAbs>()),
   );
 
+  getIt.registerLazySingleton(
+    () => ActiveMywalletUsecase(walletRepoAbs: getIt<WalletRepoAbs>()),
+  );
+
+  getIt.registerLazySingleton(
+    () => GetWalletUsercase(walletRepoAbs: getIt<WalletRepoAbs>()),
+  );
+
+  getIt.registerLazySingleton(
+    () => GetUrlPaymentMethodUsecase(walletRepoAbs: getIt<WalletRepoAbs>()),
+  );
+
+  getIt.registerLazySingleton(
+    () => SaveTransactionsUseCase(walletRepoAbs: getIt<WalletRepoAbs>()),
+  );
+  getIt.registerLazySingleton(
+    () => ChangeWalletBalanceUswecase(walletRepoAbs: getIt<WalletRepoAbs>()),
+  );
+  getIt.registerLazySingleton(
+    () => FetchPaymentInfoUsecase(
+      walletRepoAbs: getIt<WalletRepoAbs>(),
+      saveTransactionsUseCase: getIt<SaveTransactionsUseCase>(),
+      changeWalletBalanceUswecase: getIt<ChangeWalletBalanceUswecase>(),
+    ),
+  );
   //===============================CUBIT STATREMANGEMENT==========================
 
   getIt.registerLazySingleton(
@@ -202,6 +235,14 @@ Future<void> setUp() async {
 
   getIt.registerLazySingleton(
     () => PostsCubit(getIt.get<GetAllPostsUsecase>()),
+  );
+  getIt.registerLazySingleton(
+    () => MyWalletCubit(
+      activeMywalletUsecase: getIt<ActiveMywalletUsecase>(),
+      getWalletUsercase: getIt<GetWalletUsercase>(),
+      getPaymentMethodUsecase: getIt<GetUrlPaymentMethodUsecase>(),
+      fetchPaymentInfoUsecase: getIt<FetchPaymentInfoUsecase>(),
+    ),
   );
 
   //=============================== CHECK INITIALIZATION ==========================

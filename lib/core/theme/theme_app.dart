@@ -23,7 +23,7 @@ class ThemeApp {
       selectedLabelStyle: TextStyle(fontSize: 12.0.sp),
       unselectedLabelStyle: TextStyle(fontSize: 12.0.sp),
     ),
-    iconTheme: IconThemeData(color: ColorApp.black),
+    iconTheme: IconThemeData(color: Colors.black),
   );
 
   static ThemeData dark = ThemeData(

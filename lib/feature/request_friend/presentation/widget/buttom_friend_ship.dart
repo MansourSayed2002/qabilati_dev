@@ -26,13 +26,13 @@ class ButtomFriendShip extends StatelessWidget {
       listener: (context, state) {
         if (state is RequestFriendSuccess) {
           user.friendStatus = state.data["friend_status"];
-          user.userid = state.data["id"];
+          user.userModel?.id = state.data["id"];
           user.friendReplay = state.data["friend_reply"];
           user.friendRequest = state.data["friend_request"];
           log(user.friendReplay.toString());
           context.pop();
           NotificationsApp.sendNotification(
-            token: user.token.toString(),
+            token: "${user.userModel?.token}",
             title: S.of(context).friend_request,
             body:
                 "${S.of(context).send_to_you} ${LocalStorageApp.getHiveData("user_data")['user_name']} ${S.of(context).friend_request}",
@@ -93,7 +93,7 @@ class ButtomFriendShip extends StatelessWidget {
               title: S.of(context).friend_request,
               icon: Icons.group_add_rounded,
               onTap: () {
-                cubit.requestFriend(user.userid!);
+                cubit.requestFriend(user.userModel?.id ?? 0);
               },
             );
       },
