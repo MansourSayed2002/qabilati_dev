@@ -31,7 +31,8 @@ class RequestFriendScreen extends StatelessWidget {
                   width: 100.0.w,
                   height: 120.0.w,
                   fit: BoxFit.cover,
-                  image: "${dotenv.env['SUPABASE_URL_IMAGE']}${user.image}",
+                  image:
+                      "${dotenv.env['SUPABASE_URL_IMAGE']}${user.userModel?.image}",
                 ),
               ),
               Gap(10.0.w),
@@ -40,14 +41,14 @@ class RequestFriendScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      '${user.username}',
+                      '${user.userModel?.username}',
                       style: getBodyStyle(context: context),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
                     Gap(6.0.h),
                     Text(
-                      "${user.uuid}",
+                      "${user.userModel?.uuid}",
                       style: getSmallStyle(),
                       overflow: TextOverflow.ellipsis,
                     ),

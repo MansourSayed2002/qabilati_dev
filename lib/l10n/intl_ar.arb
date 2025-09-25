@@ -72,10 +72,20 @@
     "media_groub":"وسائط المجموعة",
     "delete_gruob":"حذف المجموعة",
     "qr_Groub": "رمز الاستجابة السريعة",
-    "audio_broadcast":"بث صوتي"
-
-
-
+    "audio_broadcast":"بث صوتي",
+    "active_mywallet":"تفعيل محفظتي",
+    "enter_pin":"أدخل الرمز المكون من 4 أرقام للمحفظة",
+    "fingerprint":"استخدم البصمة لتسجيل الدخول بسرعة وأمان",
+    "finish": "انهاء",
+    "wallet_des": "هنا يمكنك عرض رصيدك وجميع معاملاتك المالية.",
+    "current_balance":"الرصيد الحالي",
+    "add_fund":"إضافة أموال",
+    "withdraw_unds":"سحب الأموال",
+    "recent_transactions":"المعاملات الأخيرة",
+    "amount_add":"المبلغ المار اضافته",
+    "choose_payment":"اختر طريقه الدفع ",
+    "credit_card":"بطاقة الائتمان",
+    "money_by_phone":"المال عبر الهاتف"
 
 
 

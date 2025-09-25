@@ -58,13 +58,13 @@ class CustomBody extends StatelessWidget {
                       height: 60.0.h,
                       fit: BoxFit.cover,
                       image:
-                          "${dotenv.env['SUPABASE_URL_IMAGE']}${friendsModel.image}",
+                          "${dotenv.env['SUPABASE_URL_IMAGE']}${friendsModel.userModel?.image}",
                     ),
                   ),
                   Gap(10.0.h),
                   Expanded(
                     child: Text(
-                      friendsModel.username.toString(),
+                      "${friendsModel.userModel?.username}",
                       style: getBodyStyle(context: context),
                       maxLines: 2,
                     ),

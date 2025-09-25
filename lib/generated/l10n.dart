@@ -590,6 +590,26 @@ class S {
     return Intl.message('Members', name: 'members', desc: '', args: []);
   }
 
+  /// `active My Wallet`
+  String get active_mywallet {
+    return Intl.message(
+      'Active My Wallet',
+      name: 'active_mywallet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `active My Wallet`
+  String get enter_pin {
+    return Intl.message(
+      "Enter the 4-digit code for the wallet",
+      name: 'enter_pin',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Group information`
   String get groub_info {
     return Intl.message(
@@ -620,11 +640,106 @@ class S {
     return Intl.message('Qr Code', name: 'qr_Groub', desc: '', args: []);
   }
 
+  /// `fingerprint`
+  String get fingerprint {
+    return Intl.message(
+      "Use your fingerprint to log in quickly and securely.",
+      name: 'fingerprint',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Audio Broadcast`
   String get audio_broadcast {
     return Intl.message(
       'Audio Broadcast',
       name: 'audio_broadcast',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `finish`
+  String get finish {
+    return Intl.message('Finish', name: 'finish', desc: '', args: []);
+  }
+
+  /// `add_fund`
+  String get add_fund {
+    return Intl.message('Add Funds', name: 'add_fund', desc: '', args: []);
+  }
+
+  /// `choose_payment`
+  String get choose_payment {
+    return Intl.message(
+      'Choose payment method',
+      name: 'choose_payment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `amount_add`
+  String get amount_add {
+    return Intl.message(
+      "Amount to be added",
+      name: 'amount_add',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `amount_add`
+  String get credit_card {
+    return Intl.message("Credit card", name: 'credit_card', desc: '', args: []);
+  }
+
+  /// `amount_add`
+  String get money_by_phone {
+    return Intl.message(
+      "Money by phone",
+      name: 'money_by_phone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `recent_transactions`
+  String get recent_transactions {
+    return Intl.message(
+      'Recent Transactions',
+      name: 'recent_transactions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `withdraw_unds`
+  String get withdraw_unds {
+    return Intl.message(
+      'Withdraw Funds',
+      name: 'withdraw_unds',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `current_balance`
+  String get current_balance {
+    return Intl.message(
+      "Current Balance",
+      name: 'current_balance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `wallet_des`
+  String get wallet_des {
+    return Intl.message(
+      " Here you can view your balance and all your financial transactions.",
+      name: 'wallet_des',
       desc: '',
       args: [],
     );

@@ -72,10 +72,20 @@
     "media_groub":"Group Media"   ,
     "delete_groub":"Delete Groub",
     "qr_Groub": "Qr Code",
-    "audio_broadcast":"Audio Broadcast"
-
-   
-
+    "audio_broadcast":"Audio Broadcast",
+    "active_mywallet":"Activate my wallet",
+    "enter_pin":"Enter the 4-digit code for the wallet",
+    "fingerprint":"Use your fingerprint to log in quickly and securely.",
+    "finish": "Finish",
+    "wallet_des": "Here you can view your balance and all your financial transactions.",
+    "current_balance":"Current Balance",
+    "add_fund":"Add Funds",
+    "withdraw_unds":"Withdraw Funds",
+    "recent_transactions":"Recent Transactions",
+    "amount_add":"Amount to be added",
+    "choose_payment":"Choose payment method",
+    "credit_card":"Credit card",
+    "money_by_phone":"Money by phone"
 
 
 

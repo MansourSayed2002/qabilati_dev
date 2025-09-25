@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:qabilati/core/extension/navigator_app.dart';
 import 'package:qabilati/core/get_it/get_it.dart';
 import 'package:qabilati/core/model/friends_model.dart';
+import 'package:qabilati/feature/auth/data/model/user_model.dart';
 import 'package:qabilati/feature/chat_room/presentation/screen/chat_room_screen.dart';
 import 'package:qabilati/feature/chats/presentation/cubit/chats_cubit.dart';
 import 'package:qabilati/feature/chats/presentation/widget/buttom_tab_bar_widget.dart';
@@ -86,13 +87,15 @@ class CustomBodyChats extends StatelessWidget {
               context.push(
                 ChatRoomScreen(
                   friend: FriendsModel(
-                    userid: chats[index].userid,
-                    email: chats[index].email,
-                    phone: chats[index].phone,
-                    image: chats[index].image,
-                    token: chats[index].token,
-                    username: chats[index].username,
-                    uuid: chats[index].uuid,
+                    userModel: UserModel(
+                      id: chats[index].userid,
+                      email: chats[index].email,
+                      phone: chats[index].phone,
+                      image: chats[index].image,
+                      token: chats[index].token,
+                      username: chats[index].username,
+                      uuid: chats[index].uuid,
+                    ),
                   ),
                   chatRoomId: chats[index].chatId ?? 0,
                 ),

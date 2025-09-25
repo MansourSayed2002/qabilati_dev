@@ -25,7 +25,7 @@ class ChatRoomScreen extends StatelessWidget {
         appBar: AppBar(
           leading: ArrowBackWidget(),
           title: Text(
-            friend.username.toString(),
+            "${friend.userModel?.username}",
             overflow: TextOverflow.ellipsis,
             maxLines: 1,
           ),
@@ -37,8 +37,8 @@ class ChatRoomScreen extends StatelessWidget {
                   resourceID: "mansourZegoApp",
                   invitees: [
                     ZegoCallUser(
-                      friend.userid.toString(),
-                      friend.username.toString(),
+                      "${friend.userModel?.id}",
+                      "${friend.userModel?.username}",
                     ),
                   ],
                   isVideoCall: false,
@@ -52,8 +52,8 @@ class ChatRoomScreen extends StatelessWidget {
                   resourceID: "mansourZegoApp",
                   invitees: [
                     ZegoCallUser(
-                      friend.userid.toString(),
-                      friend.username.toString(),
+                      "${friend.userModel?.id}",
+                      "${friend.userModel?.username}",
                     ),
                   ],
                   isVideoCall: true,
