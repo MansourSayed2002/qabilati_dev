@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'package:qabilati/core/class/api_result.dart';
 import 'package:qabilati/feature/wallet/data/model/mywallet_model.dart';
+import 'package:qabilati/feature/wallet/data/model/transaction_model.dart';
 import 'package:qabilati/feature/wallet/domain/usecase/active_mywallet_usecase.dart';
 import 'package:qabilati/feature/wallet/domain/usecase/fetch_payment_info_usecase.dart';
+import 'package:qabilati/feature/wallet/domain/usecase/get_transactions_usecase.dart';
 import 'package:qabilati/feature/wallet/domain/usecase/get_url_payment_method_usecase.dart';
 import 'package:qabilati/feature/wallet/domain/usecase/get_wallet_usercase.dart';
 
@@ -16,6 +18,7 @@ class MyWalletCubit extends Cubit<MyWalletState> {
     required this.getWalletUsercase,
     required this.getPaymentMethodUsecase,
     required this.fetchPaymentInfoUsecase,
+    required this.getTransactionsUsecase,
   }) : super(MyWalletInitial());
 
   late ActiveMywalletUsecase activeMywalletUsecase;
@@ -25,6 +28,8 @@ class MyWalletCubit extends Cubit<MyWalletState> {
   late GetUrlPaymentMethodUsecase getPaymentMethodUsecase;
 
   late FetchPaymentInfoUsecase fetchPaymentInfoUsecase;
+
+  late GetTransactionsUsecase getTransactionsUsecase;
 
   PageController pageController = PageController();
 
@@ -60,7 +65,6 @@ class MyWalletCubit extends Cubit<MyWalletState> {
     var result = await getPaymentMethodUsecase.getUrlPaymentMethod(
       amount: amount,
     );
-    print(result);
     if (result is ApiSuccess) {
       emit(GetUrlSuccess(url: result.data));
     } else {
@@ -81,6 +85,16 @@ class MyWalletCubit extends Cubit<MyWalletState> {
       emit(PaymentSuccess());
     } else {
       emit(PaymentError());
+    }
+  }
+
+  getTransactions() async {
+    emit(TransactionsLoading());
+    var response = await getTransactionsUsecase.getTransactions();
+    if (response is ApiSuccess) {
+      emit(TransactionsSuccess(transactions: response.data));
+    } else {
+      emit(TransactionsError());
     }
   }
 }

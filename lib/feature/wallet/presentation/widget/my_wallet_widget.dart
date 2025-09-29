@@ -4,9 +4,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:lottie/lottie.dart';
 import 'package:qabilati/core/constants/image_app.dart';
+import 'package:qabilati/core/enum/type_scan.dart';
 import 'package:qabilati/core/extension/navigator_app.dart';
 import 'package:qabilati/core/get_it/get_it.dart';
 import 'package:qabilati/core/theme/textstyle_app.dart';
+import 'package:qabilati/feature/scanner/scanner_screen.dart';
 import 'package:qabilati/feature/wallet/presentation/cubit/my_wallet_cubit.dart';
 import 'package:qabilati/feature/wallet/presentation/screen/add_fund_screen.dart';
 import 'package:qabilati/feature/wallet/presentation/widget/balance_widget.dart';
@@ -24,13 +26,20 @@ class MyWalletWidget extends StatefulWidget {
 class _MyWalletWidgetState extends State<MyWalletWidget> {
   @override
   void initState() {
-    getIt<MyWalletCubit>().getWallet();
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await getIt<MyWalletCubit>().getWallet();
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MyWalletCubit, MyWalletState>(
+      buildWhen:
+          (previous, current) =>
+              current is MyWalletSuccess ||
+              current is MyWalletError ||
+              current is MyWalletLoading,
       builder: (context, state) {
         return state is MyWalletSuccess
             ? Padding(
@@ -50,16 +59,26 @@ class _MyWalletWidgetState extends State<MyWalletWidget> {
                   ),
                   Gap(20.0.h),
                   BalanceWidget(
+                    mywalletModel: state.wallet,
                     balance: "${state.wallet.currency} ${state.wallet.babance}",
                   ),
                   Gap(20.0.h),
                   WalletOperationWidget(
                     onAddFundsPressed: () {
                       context.push(
-                        AddFundScreen(balance: state.wallet.babance ?? 0),
+                        AddFundScreen(
+                          balance: state.wallet.babance ?? 0,
+                          walletId: state.wallet.walletId ?? 0,
+                        ),
                       );
                     },
-                    onWithdrawFundsPressed: () {},
+                    onWithdrawFundsPressed: () {
+                      context.push(
+                        ScannerScreen(
+                          typeScannerWork: TypeScannerWork.withdrawfund,
+                        ),
+                      );
+                    },
                   ),
                   Gap(20.0.h),
                   Text(

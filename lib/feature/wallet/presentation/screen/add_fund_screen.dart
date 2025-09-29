@@ -11,14 +11,20 @@ import 'package:qabilati/core/get_it/get_it.dart';
 import 'package:qabilati/core/shared/arrow_back_widget.dart';
 import 'package:qabilati/core/shared/custom_text_from_global.dart';
 import 'package:qabilati/core/theme/textstyle_app.dart';
+import 'package:qabilati/feature/profile/presentation/screen/qr_screen.dart';
 import 'package:qabilati/feature/wallet/presentation/cubit/my_wallet_cubit.dart';
 import 'package:qabilati/feature/wallet/presentation/screen/payment_screen.dart';
 import 'package:qabilati/feature/wallet/presentation/widget/card_payment_widget.dart';
 import 'package:qabilati/generated/l10n.dart';
 
 class AddFundScreen extends StatefulWidget {
-  const AddFundScreen({super.key, required this.balance});
+  const AddFundScreen({
+    super.key,
+    required this.balance,
+    required this.walletId,
+  });
   final int balance;
+  final int walletId;
   @override
   State<AddFundScreen> createState() => _AddFundScreenState();
 }
@@ -94,6 +100,17 @@ class _AddFundScreenState extends State<AddFundScreen> {
                           cubit.getPaymentMethod(amount: amountController.text);
                           amountController.clear();
                         }
+                      },
+                    ),
+                    Gap(20.0.h),
+                    CardPaymentWidget(
+                      title: S.of(context).scan_qr,
+                      subTitle: "Qr code",
+                      iconData: Icons.qr_code,
+                      onTap: () async {
+                        context.push(
+                          QrScreen(uuid: widget.walletId.toString()),
+                        );
                       },
                     ),
                   ],

@@ -90,4 +90,14 @@ class WalletRepoImp extends WalletRepoAbs {
       value: user,
     );
   }
+
+  @override
+  Future<List> getTransactions() async {
+    final userId = LocalStorageApp.getHiveData("user_data")["user_id"];
+    return await WalletApi.select(
+      table: TablesApp.transactions,
+      column: ColumsApp.userId,
+      value: userId,
+    );
+  }
 }

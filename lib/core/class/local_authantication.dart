@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/services.dart';
 import 'package:local_auth/error_codes.dart' as auth_error;
 import 'package:local_auth/local_auth.dart';
@@ -9,7 +11,7 @@ class LocalAuthanticationApp {
     return await auth.canCheckBiometrics;
   }
 
-  static localauthfinger() async {
+  static Future<bool> localauthfinger() async {
     try {
       bool canAuthBiometrics = await checkBiometric();
       if (canAuthBiometrics) {
@@ -26,8 +28,9 @@ class LocalAuthanticationApp {
       } else if (e.code == auth_error.lockedOut ||
           e.code == auth_error.permanentlyLockedOut) {
       } else {
-        print(e.toString());
+        log(e.toString());
       }
+      return false;
     }
   }
 }
