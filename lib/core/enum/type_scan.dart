@@ -1,1 +1,1 @@
-enum TypeScannerWork { addMemeber, addFriend, addGroup }
+enum TypeScannerWork { addMemeber, addFriend, addGroup,withdrawfund }

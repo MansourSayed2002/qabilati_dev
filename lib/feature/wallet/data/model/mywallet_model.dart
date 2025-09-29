@@ -6,6 +6,7 @@ class MywalletModel {
   String? createdAt;
   String? updatedAt;
   String? lastAuth;
+  bool? biometric;
 
   MywalletModel({
     this.babance,
@@ -15,6 +16,7 @@ class MywalletModel {
     this.updatedAt,
     this.userId,
     this.walletId,
+    this.biometric,
   });
 
   static MywalletModel fromJson(Map<String, dynamic> json) => MywalletModel(
@@ -22,6 +24,7 @@ class MywalletModel {
     walletId: json['wallet_id'],
     babance: json['balance'],
     currency: json['currency'],
+    biometric: json['biometric_enabled'],
     createdAt: json['created_at'],
     updatedAt: json['updated_at'],
     lastAuth: json['last_auth'],

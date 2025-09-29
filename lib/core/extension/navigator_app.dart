@@ -18,5 +18,5 @@ extension NavigatorApp on BuildContext {
     );
   }
 
-  pop() => Navigator.of(this).pop();
+  pop({Object? result}) => Navigator.of(this).pop(result);
 }

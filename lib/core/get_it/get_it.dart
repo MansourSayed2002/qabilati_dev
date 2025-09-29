@@ -33,6 +33,7 @@ import 'package:qabilati/feature/notification/domain/usecase/accept_request_frie
 import 'package:qabilati/feature/notification/domain/usecase/get_notification_usecase.dart';
 import 'package:qabilati/feature/notification/domain/usecase/reject_request_friend_usecase.dart';
 import 'package:qabilati/feature/notification/presentation/cubit/notifications_cubit.dart';
+import 'package:qabilati/feature/pin/presentation/cubit/pin_cubit.dart';
 import 'package:qabilati/feature/posts/data/repo_imp/post_repo_imp.dart';
 import 'package:qabilati/feature/posts/domain/repo_abs/post_repo_abs.dart';
 import 'package:qabilati/feature/posts/domain/usecase/get_all_posts_usecase.dart';
@@ -55,6 +56,7 @@ import 'package:qabilati/feature/wallet/domain/repo_abs/wallet_repo_abs.dart';
 import 'package:qabilati/feature/wallet/domain/usecase/active_mywallet_usecase.dart';
 import 'package:qabilati/feature/wallet/domain/usecase/change_wallet_balance_uswecase.dart';
 import 'package:qabilati/feature/wallet/domain/usecase/fetch_payment_info_usecase.dart';
+import 'package:qabilati/feature/wallet/domain/usecase/get_transactions_usecase.dart';
 import 'package:qabilati/feature/wallet/domain/usecase/get_url_payment_method_usecase.dart';
 import 'package:qabilati/feature/wallet/domain/usecase/get_wallet_usercase.dart';
 import 'package:qabilati/feature/wallet/domain/usecase/save_transactions_usecase.dart';
@@ -174,6 +176,9 @@ Future<void> setUp() async {
     () => ChangeWalletBalanceUswecase(walletRepoAbs: getIt<WalletRepoAbs>()),
   );
   getIt.registerLazySingleton(
+    () => GetTransactionsUsecase(walletRepoAbs: getIt<WalletRepoAbs>()),
+  );
+  getIt.registerLazySingleton(
     () => FetchPaymentInfoUsecase(
       walletRepoAbs: getIt<WalletRepoAbs>(),
       saveTransactionsUseCase: getIt<SaveTransactionsUseCase>(),
@@ -242,8 +247,11 @@ Future<void> setUp() async {
       getWalletUsercase: getIt<GetWalletUsercase>(),
       getPaymentMethodUsecase: getIt<GetUrlPaymentMethodUsecase>(),
       fetchPaymentInfoUsecase: getIt<FetchPaymentInfoUsecase>(),
+      getTransactionsUsecase: getIt<GetTransactionsUsecase>(),
     ),
   );
+
+  getIt.registerLazySingleton(() => PinCubit());
 
   //=============================== CHECK INITIALIZATION ==========================
   await getIt.allReady();

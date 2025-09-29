@@ -18,6 +18,7 @@ class SaveTransactionsUseCase {
           orderId: result['order']['id'],
           amount: result['order']['amount_cents'] / 100,
           status: result['success'],
+          paymentBy: "Visa Card",
           createdAt: result['order']['created_at'],
         ),
       );

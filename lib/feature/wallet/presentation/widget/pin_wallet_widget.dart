@@ -20,6 +20,13 @@ class PinWalletWidget extends StatefulWidget {
 
 class _PinWalletWidgetState extends State<PinWalletWidget> {
   TextEditingController optController = TextEditingController();
+
+  @override
+  void dispose() {
+    optController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -34,7 +41,7 @@ class _PinWalletWidgetState extends State<PinWalletWidget> {
           Gap(20.0.h),
           OptWidget(
             controller: optController,
-            length: 4,
+            length: 6,
             keyboardType: TextInputType.none,
             onTap: () {
               showModalBottomSheet(

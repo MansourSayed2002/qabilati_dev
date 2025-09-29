@@ -28,3 +28,12 @@ final class PaymentLoading extends MyWalletState {}
 final class PaymentSuccess extends MyWalletState {}
 
 final class PaymentError extends MyWalletState {}
+
+final class TransactionsLoading extends MyWalletState {}
+
+final class TransactionsSuccess extends MyWalletState {
+  final List<TransactionModel> transactions;
+  TransactionsSuccess({required this.transactions});
+}
+
+final class TransactionsError extends MyWalletState {}

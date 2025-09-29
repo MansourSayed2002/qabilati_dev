@@ -8,4 +8,5 @@ abstract class WalletRepoAbs {
   Future<Map> fetchPaymentMethodInfo({required int orderId});
   Future<void> insertTransactions({required TransactionModel data});
   Future<void> changeBalance({required int balance});
+  Future<List> getTransactions();
 }
