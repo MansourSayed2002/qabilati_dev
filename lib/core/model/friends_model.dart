@@ -5,21 +5,8 @@ part 'friends_model.g.dart';
 
 @JsonSerializable()
 class FriendsModel {
-  // @JsonKey(name: 'user_id')
-  // int? userid;
-
-  // @JsonKey(name: 'user_name')
-  // String? username;
-  // @JsonKey(name: 'user_emailgoogle')
-  // String? email;
-  // @JsonKey(name: 'user_phone')
-  // String? phone;
-  // @JsonKey(name: 'user_image')
-  // String? image;
-  // @JsonKey(name: 'user_uuid')
-  // String? uuid;
-  // @JsonKey(name: 'user_token')
-  // String? token;
+  @JsonKey(name: 'user_uuid')
+  String? uuid;
   @JsonKey(name: 'id')
   int? friendid;
   UserModel? userModel;
@@ -36,6 +23,7 @@ class FriendsModel {
     this.friendRequest,
     this.friendStatus,
     this.friendid,
+    this.uuid
   });
 
   factory FriendsModel.fromJson(Map<String, dynamic> json) =>

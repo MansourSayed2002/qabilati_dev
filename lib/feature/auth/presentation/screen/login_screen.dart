@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+import 'package:qabilati/core/class/local_storage.dart';
 import 'package:qabilati/core/constants/image_app.dart';
 import 'package:qabilati/core/enum/type.dart';
 import 'package:qabilati/core/extension/message_bar.dart';
@@ -13,6 +14,7 @@ import 'package:qabilati/core/shared/custom_another_page_global.dart';
 import 'package:qabilati/core/shared/custom_text_from_global.dart';
 import 'package:qabilati/core/shared/elevated_button_widget.dart';
 import 'package:qabilati/core/theme/textstyle_app.dart';
+
 import 'package:qabilati/feature/auth/presentation/cubit/auth_cubit.dart';
 import 'package:qabilati/feature/auth/presentation/screen/register_screen.dart';
 import 'package:qabilati/feature/auth/presentation/screen/verifycode_screen.dart';
@@ -44,6 +46,10 @@ class _LoginScreenState extends State<LoginScreen> {
             loadingWidget(context);
           } else if (state is LogInSuccess) {
             context.pop();
+            LocalStorageApp.setHiveData(
+              LocalStorageApp.userData,
+              state.userModel,
+            );
             context.push(VerifycodeScreen(type: TypeEnum.login));
           } else if (state is LogInError) {
             context.pop();
@@ -91,6 +97,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     CustomTextFormGlobal(
                       controller: phoneController,
                       hinttext: S.of(context).hint_phone,
+                      keyboardType: TextInputType.phone,
                       validator: (value) {
                         return validationField(context, "phone", 11, 11, value);
                       },

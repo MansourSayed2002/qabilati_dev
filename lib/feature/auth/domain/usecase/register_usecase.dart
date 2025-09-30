@@ -1,7 +1,7 @@
 import 'dart:developer';
-
 import 'package:qabilati/core/class/api_result.dart';
 import 'package:qabilati/core/class/local_storage.dart';
+import 'package:qabilati/core/constants/link_app.dart';
 import 'package:qabilati/core/enum/status_request.dart';
 import 'package:qabilati/core/function/get_token.dart';
 import 'package:qabilati/feature/auth/data/model/user_model.dart';
@@ -14,17 +14,21 @@ class RegisterUsecase {
     try {
       String token = await getToken();
       var id = await repoAbs.register({
-        "user_name": data.username,
-        "user_emailgoogle": data.email,
-        "user_phone": data.phone,
-        "user_token": token,
+        ColumsApp.username: data.username,
+        ColumsApp.usergoogle: data.email,
+        ColumsApp.userPhone: data.phone,
+        ColumsApp.usertoken: token,
       });
-      LocalStorageApp.setHiveData("user_data", {
-        "user_name": data.username,
-        "user_emailgoogle": data.email,
-        "user_phone": data.phone,
-        "user_id": id.first['user_id'],
-      });
+      LocalStorageApp.setHiveData(
+        LocalStorageApp.userData,
+        UserModel(
+          id: id.first[ColumsApp.userId],
+          username: data.username,
+          email: data.email,
+          phone: data.phone,
+          isActiveWallet: false,
+        ),
+      );
       return ApiSuccess(StatusRequest.success);
     } catch (e) {
       log(e.toString());

@@ -19,6 +19,7 @@ class CustomTextFormGlobal extends StatelessWidget {
     this.maxLines,
     this.onTap,
     this.focusNode,
+    this.keyboardType,
   });
   final String hinttext;
   final double? height;
@@ -32,6 +33,7 @@ class CustomTextFormGlobal extends StatelessWidget {
   final int? maxLines;
   final FocusNode? focusNode;
   final void Function()? onTap;
+  final TextInputType? keyboardType;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -42,6 +44,7 @@ class CustomTextFormGlobal extends StatelessWidget {
       validator: validator,
       onChanged: onChanged,
       maxLines: maxLines,
+      keyboardType: keyboardType,
       obscureText: obscureText ?? false,
       cursorColor: ColorApp.coral,
       decoration: InputDecoration(

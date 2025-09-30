@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:qabilati/core/class/api_result.dart';
 import 'package:qabilati/core/class/local_storage.dart';
 import 'package:qabilati/core/enum/status_request.dart';
+import 'package:qabilati/feature/auth/data/model/user_model.dart';
 import 'package:qabilati/feature/search/domain/repo_abs/repo_abs.dart';
 
 class GetSearchUsecase {
@@ -11,8 +12,9 @@ class GetSearchUsecase {
 
   Future<ApiResult> getSearch(String search) async {
     try {
+      UserModel user = LocalStorageApp.getHiveData(LocalStorageApp.userData);
       List response = await repoAbsSearch.getSearch({
-        'target_user_id': LocalStorageApp.getHiveData('user_data')['user_id'],
+        'target_user_id': user.id,
         'name_prefix': search,
       });
       if (response.isNotEmpty) {

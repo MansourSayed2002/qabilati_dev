@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:qabilati/core/class/local_storage.dart';
+import 'package:qabilati/core/constants/link_app.dart';
 import 'package:qabilati/core/function/send_verifycode.dart';
 import 'package:qabilati/feature/auth/domain/repo_abs/repo_abs.dart';
 
@@ -10,10 +11,10 @@ class CreateVerifyAndSendUsecase {
     var verifyCode = Random().nextInt(99999);
     if (verifyCode > 10000) {
       repoAbst.createVerifyAndSend({
-        "user_verifycode": verifyCode,
-      }, LocalStorageApp.getHiveData("user_data")['user_phone']);
+        ColumsApp.userverifycode: verifyCode,
+      }, LocalStorageApp.getHiveData(LocalStorageApp.userData).phone);
       sendVerifyCode(
-        email: LocalStorageApp.getHiveData("user_data")['user_emailgoogle'],
+        email: LocalStorageApp.getHiveData(LocalStorageApp.userData).email,
         message: verifyCode.toString(),
       );
     } else {

@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:qabilati/core/class/api_result.dart';
 import 'package:qabilati/core/class/local_storage.dart';
+import 'package:qabilati/core/constants/link_app.dart';
 import 'package:qabilati/core/enum/status_request.dart';
 import 'package:qabilati/feature/auth/data/model/user_model.dart';
 import 'package:qabilati/feature/auth/domain/repo_abs/repo_abs.dart';
@@ -14,7 +15,10 @@ class LoginUsecase {
     try {
       List response = await repo.logIn(phone);
       if (response.isNotEmpty) {
-        LocalStorageApp.setHiveData("user_data", response.first);
+        LocalStorageApp.setSecureStorage(
+          LocalStorageApp.uuidUser,
+          response.first[ColumsApp.useruuid],
+        );
         return ApiSuccess(UserModel.fromJson(response.first));
       } else {
         return ApiFailure(StatusRequest.failure);

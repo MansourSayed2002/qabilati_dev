@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +40,6 @@ class _ImageWidgetState extends State<ImageWidget> {
                   if (image != null) {
                     widget.isIcon = false;
                     widget.controller.pathImage = image;
-                    log(widget.controller.pathImage);
                     setState(() {});
                   }
                 },
@@ -56,7 +54,6 @@ class _ImageWidgetState extends State<ImageWidget> {
                   if (image != null) {
                     widget.isIcon = false;
                     widget.controller.pathImage = image;
-                    log(widget.controller.pathImage);
                     setState(() {});
                   }
                 },

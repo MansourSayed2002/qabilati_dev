@@ -87,6 +87,7 @@ class CustomBodyChats extends StatelessWidget {
               context.push(
                 ChatRoomScreen(
                   friend: FriendsModel(
+                    uuid: chats[index].uuid,
                     userModel: UserModel(
                       id: chats[index].userid,
                       email: chats[index].email,
@@ -94,7 +95,6 @@ class CustomBodyChats extends StatelessWidget {
                       image: chats[index].image,
                       token: chats[index].token,
                       username: chats[index].username,
-                      uuid: chats[index].uuid,
                     ),
                   ),
                   chatRoomId: chats[index].chatId ?? 0,

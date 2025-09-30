@@ -51,19 +51,19 @@ class RepoImp extends RepoAbs {
   uplaodImageUser(File file) async {
     try {
       var name = file.path.split("\\").last;
+      String uuid = await LocalStorageApp.getSecureStorage(
+        LocalStorageApp.uuidUser,
+      );
       await AuthApi.uploadFile(
         TablesApp.imageBucket,
-        "${TablesApp.pathImageUser}${LocalStorageApp.getHiveData("user_data")['uuid']}/$name",
+        "${TablesApp.pathImageUser}$uuid/$name",
         file,
       );
       await AuthApi.updateEq(
         TablesApp.user,
-        {
-          "user_image":
-              "${TablesApp.pathImageUser}${LocalStorageApp.getHiveData("user_data")['user_uuid']}/$name",
-        },
+        {ColumsApp.userImage: "${TablesApp.pathImageUser}$uuid/$name"},
         ColumsApp.useruuid,
-        LocalStorageApp.getHiveData("user_data")['user_uuid'],
+        uuid,
       );
     } catch (e) {
       log(e.toString());

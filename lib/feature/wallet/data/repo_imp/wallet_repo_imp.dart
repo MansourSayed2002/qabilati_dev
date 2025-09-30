@@ -9,13 +9,18 @@ import 'package:qabilati/feature/wallet/domain/repo_abs/wallet_repo_abs.dart';
 
 class WalletRepoImp extends WalletRepoAbs {
   @override
-  Future<void> activeMyWallet({required String pin}) async {
-    final userId = LocalStorageApp.getHiveData("user_data")["user_id"];
+  Future<void> activeMyWallet({
+    required String pin,
+    required int userId,
+  }) async {
     List response = await WalletApi.insert(
       table: TablesApp.wallets,
       values: {ColumsApp.userId: userId},
     );
-    LocalStorageApp.setHiveData('wallet_id', response.first['wallet_id']);
+    LocalStorageApp.setSecureStorage(
+      ColumsApp.walletId,
+      response.first['wallet_id'].toString(),
+    );
     await WalletApi.update(
       table: TablesApp.user,
       values: {ColumsApp.activeWallet: true},
@@ -33,27 +38,28 @@ class WalletRepoImp extends WalletRepoAbs {
 
   @override
   Future<void> authbiometric() async {
+    final walletId = await LocalStorageApp.getSecureStorage(ColumsApp.walletId);
     await WalletApi.update(
       table: TablesApp.walletSecurity,
       values: {ColumsApp.biometricEnabled: true},
       column: ColumsApp.walletId,
-      value: LocalStorageApp.getHiveData("wallet_id"),
+      value: int.tryParse(walletId) ?? 0,
     );
   }
 
   @override
-  getWallet() async {
+  getWallet(userId) async {
     return await WalletApi.rpc(
       nameFun: "get_mywallet",
-      params: {
-        "target_user": LocalStorageApp.getHiveData("user_data")["user_id"],
-      },
+      params: {"target_user": userId},
     );
   }
 
   @override
-  Future<String> getPaymentMethod({required String amount}) async {
-    final userId = LocalStorageApp.getHiveData("user_data")["user_id"];
+  Future<String> getPaymentMethod({
+    required String amount,
+    required int userId,
+  }) async {
     var result = await WalletApi.invoke(
       baseUrl: dotenv.env['URL_PAYMOB_OPERATION'].toString(),
 
@@ -63,12 +69,14 @@ class WalletRepoImp extends WalletRepoAbs {
   }
 
   @override
-  Future<Map> fetchPaymentMethodInfo({required int orderId}) async {
-    final userId = LocalStorageApp.getHiveData("user_data")["user_id"];
+  Future<Map> fetchPaymentMethodInfo({
+    required int orderId,
+    required int userId,
+  }) async {
     return await WalletApi.invoke(
       baseUrl: dotenv.env['URL_FETCH_PAYMENT_INFO'].toString(),
 
-      body: jsonEncode({"user_id": userId, "order_id": orderId}),
+      body: jsonEncode({ColumsApp.userId: userId, "order_id": orderId}),
     );
   }
 
@@ -81,19 +89,20 @@ class WalletRepoImp extends WalletRepoAbs {
   }
 
   @override
-  Future<void> changeBalance({required int balance}) async {
-    final user = LocalStorageApp.getHiveData("user_data")["user_id"];
+  Future<void> changeBalance({
+    required int balance,
+    required int userId,
+  }) async {
     await WalletApi.update(
       table: TablesApp.wallets,
       values: {ColumsApp.balance: balance},
       column: ColumsApp.userId,
-      value: user,
+      value: userId,
     );
   }
 
   @override
-  Future<List> getTransactions() async {
-    final userId = LocalStorageApp.getHiveData("user_data")["user_id"];
+  Future<List> getTransactions(userId) async {
     return await WalletApi.select(
       table: TablesApp.transactions,
       column: ColumsApp.userId,

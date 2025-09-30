@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qabilati/core/class/local_storage.dart';
-import 'package:qabilati/core/extension/navigator_app.dart';
 import 'package:qabilati/core/get_it/get_it.dart';
 import 'package:qabilati/core/shared/arrow_back_widget.dart';
-import 'package:qabilati/feature/profile/presentation/screen/qr_screen.dart';
+import 'package:qabilati/feature/auth/data/model/user_model.dart';
 import 'package:qabilati/feature/wallet/presentation/cubit/my_wallet_cubit.dart';
 import 'package:qabilati/feature/wallet/presentation/widget/my_wallet_widget.dart';
 import 'package:qabilati/feature/wallet/presentation/widget/active_wallet_widget.dart';
@@ -17,6 +16,7 @@ class MyWalletScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    UserModel user = LocalStorageApp.getHiveData(LocalStorageApp.userData);
     return BlocProvider.value(
       value: getIt<MyWalletCubit>(),
       child: Scaffold(
@@ -24,24 +24,9 @@ class MyWalletScreen extends StatelessWidget {
           centerTitle: true,
           title: Text(S.of(context).wallet),
           leading: ArrowBackWidget(),
-          actions: [
-            IconButton(
-              onPressed: () {
-                context.push(
-                  QrScreen(
-                    uuid:
-                        getIt<MyWalletCubit>().walletData?.walletId
-                            .toString() ??
-                        '',
-                  ),
-                );
-              },
-              icon: Icon(Icons.qr_code),
-            ),
-          ],
         ),
         body:
-            LocalStorageApp.getHiveData('user_data')['active_wallet'] == false
+            user.isActiveWallet == false
                 ? PageView.builder(
                   itemCount: 3,
                   controller: getIt<MyWalletCubit>().pageController,

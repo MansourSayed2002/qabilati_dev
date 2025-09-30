@@ -13,8 +13,8 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 class ServiceApp {
   static Future<void> init(GlobalKey<NavigatorState> navigatorKeydev) async {
     await Hive.initFlutter();
-    await Hive.openBox("userbox");
     Hive.registerAdapter(UserModelAdapter());
+    await Hive.openBox<UserModel>("userbox");
     await LocalStorageApp.initStorage();
     await dotenv.load(fileName: ".env");
     await Firebase.initializeApp(
@@ -26,11 +26,14 @@ class ServiceApp {
     );
     await MessageingConfig.initFirebaseMessaging();
     setUp();
-    if (LocalStorageApp.getHiveData("user_data") != null) {
+    if (LocalStorageApp.getHiveData(LocalStorageApp.userData) != null) {
       ZegoKit.instance.onUserLogin(
-        userID: LocalStorageApp.getHiveData("user_data")['user_id'].toString(),
+        userID:
+            LocalStorageApp.getHiveData(LocalStorageApp.userData).id.toString(),
         userName:
-            LocalStorageApp.getHiveData("user_data")['user_name'].toString(),
+            LocalStorageApp.getHiveData(
+              LocalStorageApp.userData,
+            ).username.toString(),
       );
     } else {
       LocalStorageApp.saveData("initzego", false);
