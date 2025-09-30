@@ -1,6 +1,8 @@
 import 'dart:developer';
 import 'package:qabilati/core/class/api_result.dart';
+import 'package:qabilati/core/class/local_storage.dart';
 import 'package:qabilati/core/enum/status_request.dart';
+import 'package:qabilati/feature/auth/data/model/user_model.dart';
 import 'package:qabilati/feature/wallet/domain/repo_abs/wallet_repo_abs.dart';
 import 'package:qabilati/feature/wallet/domain/usecase/change_wallet_balance_uswecase.dart';
 import 'package:qabilati/feature/wallet/domain/usecase/save_transactions_usecase.dart';
@@ -20,7 +22,8 @@ class FetchPaymentInfoUsecase {
     required int currentBalance,
   }) async {
     try {
-      var result = await walletRepoAbs.fetchPaymentMethodInfo(orderId: orderId);
+        UserModel user = LocalStorageApp.getHiveData(LocalStorageApp.userData);
+      var result = await walletRepoAbs.fetchPaymentMethodInfo(orderId: orderId,userId: user.id??0);
       await saveTransactionsUseCase.saveTransactions(result: result);
       if (result['success'] == true) {
         await changeWalletBalanceUswecase.changeBalance(

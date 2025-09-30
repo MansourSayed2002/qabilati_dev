@@ -1,10 +1,10 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:qabilati/core/class/local_storage.dart';
 import 'package:qabilati/core/constants/image_app.dart';
 import 'package:qabilati/core/extension/navigator_app.dart';
+import 'package:qabilati/core/shared/net_work_image_widget.dart';
 import 'package:qabilati/core/theme/color_app.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -57,12 +57,12 @@ class CustomHeaderWidget extends StatelessWidget {
             bottom: -40.0.h,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(5.0.r),
-              child: CachedNetworkImage(
+              child: NetWorkImageWidget(
                 width: 80.0.w,
                 height: 90.0.h,
                 fit: BoxFit.cover,
-                imageUrl:
-                    "${dotenv.env['SUPABASE_URL_IMAGE']}${LocalStorageApp.getHiveData("user_data")["user_image"]}",
+                image:
+                    "${dotenv.env['SUPABASE_URL_IMAGE']}${LocalStorageApp.getHiveData(LocalStorageApp.userData).image}",
               ),
             ),
           ),

@@ -7,6 +7,7 @@ import 'package:qabilati/core/extension/navigator_app.dart';
 import 'package:qabilati/core/get_it/get_it.dart';
 import 'package:qabilati/core/shared/pin_keyboard_widget.dart';
 import 'package:qabilati/core/theme/textstyle_app.dart';
+import 'package:qabilati/feature/auth/data/model/user_model.dart';
 import 'package:qabilati/feature/auth/presentation/widget/opt_widget.dart';
 import 'package:qabilati/feature/wallet/presentation/cubit/my_wallet_cubit.dart';
 import 'package:qabilati/generated/l10n.dart';
@@ -60,9 +61,14 @@ class _PinWalletWidgetState extends State<PinWalletWidget> {
                       );
                       if (result) {
                         getIt<MyWalletCubit>().pageController.jumpToPage(2);
-                        var user = LocalStorageApp.getHiveData("user_data");
-                        user['active_wallet'] = true;
-                        await LocalStorageApp.setHiveData("user_data", user);
+                        UserModel user = LocalStorageApp.getHiveData(
+                          LocalStorageApp.userData,
+                        );
+                        user.isActiveWallet = true;
+                        await LocalStorageApp.setHiveData(
+                          LocalStorageApp.userData,
+                          user,
+                        );
                       } else {
                         context.messageBar(S.of(context).message_error);
                       }
@@ -90,7 +96,7 @@ class _PinWalletWidgetState extends State<PinWalletWidget> {
   }
 
   void onNumberTap(String number) {
-    if (optController.text.length < 4) {
+    if (optController.text.length < 6) {
       setState(() {
         optController.text += number;
       });

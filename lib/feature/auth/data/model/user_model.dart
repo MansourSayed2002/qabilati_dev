@@ -10,24 +10,21 @@ class UserModel {
   @JsonKey(name: 'user_id')
   int? id;
   @HiveField(1)
-  @JsonKey(name: 'user_uuid')
-  String? uuid;
-  @HiveField(2)
   @JsonKey(name: 'user_emailgoogle')
   String? email;
-  @HiveField(3)
+  @HiveField(2)
   @JsonKey(name: 'user_name')
   String? username;
-  @HiveField(4)
+  @HiveField(3)
   @JsonKey(name: 'user_phone')
   String? phone;
-  @HiveField(5)
+  @HiveField(4)
   @JsonKey(name: 'user_image')
   String? image;
-  @HiveField(6)
+  @HiveField(5)
   @JsonKey(name: 'user_token')
   String? token;
-  @HiveField(7)
+  @HiveField(6)
   @JsonKey(name: 'active_wallet')
   bool? isActiveWallet;
   UserModel({
@@ -36,7 +33,6 @@ class UserModel {
     this.username,
     this.phone,
     this.image,
-    this.uuid,
     this.token,
     this.isActiveWallet,
   });

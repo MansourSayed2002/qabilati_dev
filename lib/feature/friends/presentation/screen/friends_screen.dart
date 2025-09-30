@@ -17,13 +17,11 @@ class Cardships extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Row(
-        children: [
-          SvgPicture.asset(ImageApp.newFriend, width: 100.0.w, height: 100.0.h),
-          Text("data"),
-        ],
-      ),
+    return Row(
+      children: [
+        SvgPicture.asset(ImageApp.newFriend, width: 100.0.w, height: 100.0.h),
+        Text("data"),
+      ],
     );
   }
 }

@@ -78,7 +78,7 @@ class _TextFormRigsterState extends State<TextFormRigster> {
           Gap(30.0.h),
           ElevatedButtonWidget(
             title: S.of(context).continue_bu,
-            onTap: () {
+            onTap: () async {
               if (key.currentState!.validate()) {
                 getIt<AuthCubit>().register(
                   UserModel(

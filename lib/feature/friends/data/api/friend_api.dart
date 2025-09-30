@@ -35,11 +35,11 @@ class FriendApi {
         .eq(column, value)
         .eq(column2, value2);
     if (response.isEmpty) {
-      var chatId = await SupabaseConnect.supabase
+      List chatId = await SupabaseConnect.supabase
           .from(table)
           .insert(data)
           .select(selectColumn);
-      return chatId;
+      return chatId.first['chat_id'];
     } else {
       return response.first['chat_id'];
     }

@@ -1,22 +1,23 @@
+import 'package:qabilati/core/constants/link_app.dart';
 import 'package:qabilati/feature/friends/data/api/friend_api.dart';
 import 'package:qabilati/feature/friends/domain/repo_abs/friend_repo_abs.dart';
 
 class FriendRepoIpm extends FriendRepoAbs {
   @override
   Future getFriend(Map<String, dynamic> params) async {
-    var response = await FriendApi.getFriend("get_friends", params);
+    var response = await FriendApi.getFriend(FuncAppDb.getFriends, params);
     return response;
   }
 
   @override
   Future selectChatRoom(int value, int value2, Map data) async {
     var response = await FriendApi.selectChatRoom(
-      "chats",
-      "chat_user1",
+      TablesApp.chats,
+      ColumsApp.chatUser1,
       value,
-      "chat_user2",
+      ColumsApp.chatUser2,
       value2,
-      "chat_id",
+      ColumsApp.chatID,
       data,
     );
     return response;
@@ -25,7 +26,7 @@ class FriendRepoIpm extends FriendRepoAbs {
   @override
   Future getPendingFriendRequest(Map<String, dynamic> params) async {
     var response = await FriendApi.getFriend(
-      "get_pending_friend_request",
+      FuncAppDb.getPandingFriendsRequest,
       params,
     );
     return response;
@@ -34,35 +35,35 @@ class FriendRepoIpm extends FriendRepoAbs {
   @override
   Future acceptRequestFriend(int requestId, int replyId) async {
     await FriendApi.updateEq(
-      "friend",
-      {"friend_status": 1},
-      "friend_request",
+      TablesApp.friend,
+      {ColumsApp.friendStatus: 1},
+      ColumsApp.friendRequest,
       requestId,
-      "friend_reply",
+      ColumsApp.friendReply,
       replyId,
     );
     await FriendApi.delete(
-      "get_id_notifi",
+      FuncAppDb.getIdNotifi,
       {"target_receiver_id": replyId, "target_sender_id": requestId},
-      "notification",
-      "id",
+      TablesApp.notification,
+      ColumsApp.notifiID,
     );
   }
 
   @override
   Future rejectRequestFriend(int requestId, int replyId) async {
     await FriendApi.reject(
-      "friend",
-      "friend_request",
+      TablesApp.friend,
+      ColumsApp.friendRequest,
       requestId,
-      "friend_reply",
+      ColumsApp.friendReply,
       replyId,
     );
     await FriendApi.delete(
-      "get_id_notifi",
+      FuncAppDb.getIdNotifi,
       {"target_receiver_id": replyId, "target_sender_id": requestId},
-      "notification",
-      "id",
+      TablesApp.notification,
+      ColumsApp.notifiID,
     );
   }
 }

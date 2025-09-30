@@ -79,12 +79,12 @@ class _VerifycodeScreenState extends State<VerifycodeScreen> {
                 ZegoKit.instance.onUserLogin(
                   userID:
                       LocalStorageApp.getHiveData(
-                        "user_data",
-                      )['user_id'].toString(),
+                        LocalStorageApp.userData,
+                      ).id.toString(),
                   userName:
                       LocalStorageApp.getHiveData(
-                        "user_data",
-                      )['user_name'].toString(),
+                        LocalStorageApp.userData,
+                      ).username.toString(),
                 );
                 LocalStorageApp.saveData("initzego", true);
               }

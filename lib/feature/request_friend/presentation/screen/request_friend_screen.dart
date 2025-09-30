@@ -48,7 +48,7 @@ class RequestFriendScreen extends StatelessWidget {
                     ),
                     Gap(6.0.h),
                     Text(
-                      "${user.userModel?.uuid}",
+                      "${user.uuid}",
                       style: getSmallStyle(),
                       overflow: TextOverflow.ellipsis,
                     ),

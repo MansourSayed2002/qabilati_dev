@@ -18,35 +18,32 @@ class UserModelAdapter extends TypeAdapter<UserModel> {
     };
     return UserModel(
       id: fields[0] as int?,
-      email: fields[2] as String?,
-      username: fields[3] as String?,
-      phone: fields[4] as String?,
-      image: fields[5] as String?,
-      uuid: fields[1] as String?,
-      token: fields[6] as String?,
-      isActiveWallet: fields[7] as bool?,
+      email: fields[1] as String?,
+      username: fields[2] as String?,
+      phone: fields[3] as String?,
+      image: fields[4] as String?,
+      token: fields[5] as String?,
+      isActiveWallet: fields[6] as bool?,
     );
   }
 
   @override
   void write(BinaryWriter writer, UserModel obj) {
     writer
-      ..writeByte(8)
+      ..writeByte(7)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.uuid)
-      ..writeByte(2)
       ..write(obj.email)
-      ..writeByte(3)
+      ..writeByte(2)
       ..write(obj.username)
-      ..writeByte(4)
+      ..writeByte(3)
       ..write(obj.phone)
-      ..writeByte(5)
+      ..writeByte(4)
       ..write(obj.image)
-      ..writeByte(6)
+      ..writeByte(5)
       ..write(obj.token)
-      ..writeByte(7)
+      ..writeByte(6)
       ..write(obj.isActiveWallet);
   }
 
@@ -71,14 +68,12 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
       username: json['user_name'] as String?,
       phone: json['user_phone'] as String?,
       image: json['user_image'] as String?,
-      uuid: json['user_uuid'] as String?,
       token: json['user_token'] as String?,
       isActiveWallet: json['active_wallet'] as bool?,
     );
 
 Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
       'user_id': instance.id,
-      'user_uuid': instance.uuid,
       'user_emailgoogle': instance.email,
       'user_name': instance.username,
       'user_phone': instance.phone,

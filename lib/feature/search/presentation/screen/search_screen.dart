@@ -80,6 +80,7 @@ class _SearchScreenState extends State<SearchScreen> {
                             FriendsModel person = FriendsModel.fromJson(
                               getIt<SearchCubit>().data[index],
                             );
+
                             return FriendCardWidget(person: person);
                           },
                         )

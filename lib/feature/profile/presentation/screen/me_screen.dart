@@ -1,10 +1,9 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:qabilati/core/class/local_storage.dart';
 import 'package:qabilati/core/class/zego_kit.dart';
 import 'package:qabilati/core/extension/navigator_app.dart';
 import 'package:qabilati/core/theme/color_app.dart';
+import 'package:qabilati/feature/auth/data/model/user_model.dart';
 import 'package:qabilati/feature/auth/presentation/screen/login_screen.dart';
 import 'package:qabilati/feature/posts/presentation/screen/posts_screen.dart';
 import 'package:qabilati/feature/profile/presentation/widget/card_services_widget.dart';
@@ -18,14 +17,13 @@ class MeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    UserModel user = LocalStorageApp.getHiveData(LocalStorageApp.userData);
     return Scaffold(
       body: Column(
         children: [
           PersonalIdentificationCardWidget(
-            name: LocalStorageApp.getHiveData("user_data")["user_name"],
-            image:
-                "${dotenv.env['SUPABASE_URL_IMAGE']}${LocalStorageApp.getHiveData("user_data")["user_image"]}",
-            uuid: LocalStorageApp.getHiveData("user_data")["user_uuid"],
+            name: user.username.toString(),
+            image: "${dotenv.env['SUPABASE_URL_IMAGE']}${user.image}",
           ),
           Divider(color: ColorApp.greyDa, thickness: 8.0),
           CardServicesWidget(
@@ -57,9 +55,7 @@ class MeScreen extends StatelessWidget {
             title: S.of(context).setting,
             iconData: Icons.settings_outlined,
             coloricon: Colors.blue,
-            onTap: () {
-              log(LocalStorageApp.getHiveData("user_data").toString());
-            },
+            onTap: () {},
           ),
           Divider(color: ColorApp.greymiddle),
           CardServicesWidget(

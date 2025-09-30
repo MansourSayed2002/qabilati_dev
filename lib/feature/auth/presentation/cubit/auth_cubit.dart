@@ -33,7 +33,7 @@ class AuthCubit extends Cubit<AuthState> {
     var response = await logInUseCase.login(phone);
     if (response is ApiSuccess) {
       userModel = response.data;
-      emit(LogInSuccess());
+      emit(LogInSuccess(userModel: response.data));
     } else if (response is ApiFailure) {
       emit(LogInError());
     }

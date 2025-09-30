@@ -27,7 +27,7 @@ class NetWorkImageWidget extends StatelessWidget {
           (context, url) => Container(
             height: height,
             width: width ?? double.infinity,
-            color: Colors.grey[200], // لون خفيف بدل الصورة
+            color: Colors.grey[200], 
             alignment: Alignment.center,
             child: const Icon(Icons.image, color: Colors.grey),
           ),
@@ -40,34 +40,3 @@ class NetWorkImageWidget extends StatelessWidget {
     );
   }
 }
-
-// class ImageProfileWidget extends StatelessWidget {
-//   const ImageProfileWidget({
-//     super.key,
-//     this.width,
-//     this.height,
-//     required this.future,
-//   });
-//   final double? width;
-//   final double? height;
-//   final Future<String>? future;
-//   @override
-//   Widget build(BuildContext context) {
-//     return FutureBuilder<String>(
-//       future: future,
-//       builder: (context, snapshot) {
-//         if (snapshot.connectionState == ConnectionState.waiting) {
-//           return CircularProgressIndicator(color: ColorApp.coral);
-//         } else if (snapshot.hasError) {
-//           return Text('Error: ${snapshot.error}');
-//         } else {
-//           return NetWorkImageWidget(
-//             image: snapshot.data!,
-//             height: height ?? 50.0.h,
-//             width: width ?? 50.0.w,
-//           );
-//         }
-//       },
-//     );
-//   }
-// }

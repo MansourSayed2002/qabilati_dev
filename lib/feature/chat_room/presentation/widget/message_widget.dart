@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:qabilati/core/class/local_storage.dart';
 import 'package:qabilati/core/theme/color_app.dart';
 import 'package:qabilati/core/shared/message_types_send.dart';
+import 'package:qabilati/feature/auth/data/model/user_model.dart';
 import 'package:qabilati/feature/groub_chat/data/model/message_sender_model.dart';
 
 class MessageWidget extends StatelessWidget {
@@ -10,10 +11,11 @@ class MessageWidget extends StatelessWidget {
   final MessageSenderModel message;
   @override
   Widget build(BuildContext context) {
+    UserModel user = LocalStorageApp.getHiveData(LocalStorageApp.userData);
     return Align(
       alignment:
           message.messageSenderId ==
-                  LocalStorageApp.getHiveData("user_data")['user_id']
+                 user.id
               ? Alignment.topLeft
               : Alignment.topRight,
       child: Container(
@@ -28,12 +30,12 @@ class MessageWidget extends StatelessWidget {
         decoration: BoxDecoration(
           color:
               message.messageSenderId ==
-                      LocalStorageApp.getHiveData("user_data")['user_id']
+                      user.id
                   ? ColorApp.coral
                   : ColorApp.midnightBlue,
           borderRadius:
               message.messageSenderId ==
-                      LocalStorageApp.getHiveData("user_data")['user_id']
+                      user.id
                   ? BorderRadius.only(
                     bottomLeft: Radius.circular(8.0.r),
                     topRight: Radius.circular(8.0.r),

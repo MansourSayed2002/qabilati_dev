@@ -5,6 +5,7 @@ import 'package:qabilati/core/class/api_result.dart';
 import 'package:qabilati/core/class/local_storage.dart';
 import 'package:qabilati/core/constants/link_app.dart';
 import 'package:qabilati/core/enum/status_request.dart';
+import 'package:qabilati/feature/auth/data/model/user_model.dart';
 import 'package:qabilati/feature/groub_chat/domain/repo_abs/groub_achat_repo_abs.dart';
 
 class CreateNewGroubUsecase {
@@ -12,13 +13,16 @@ class CreateNewGroubUsecase {
   CreateNewGroubUsecase(this.groubChatRepoAbs);
 
   Future<ApiResult> createNewGroub(String groubName, String groubImage) async {
+    UserModel user = await LocalStorageApp.getHiveData(
+      LocalStorageApp.userData,
+    );
     try {
       List response = await groubChatRepoAbs.createNewGroub({
         "groub_name": groubName,
-        "groub_owner": LocalStorageApp.getHiveData("user_data")['user_id'],
+        "groub_owner": user.id,
       });
       await groubChatRepoAbs.addMember({
-        "member_id": LocalStorageApp.getHiveData("user_data")['user_id'],
+        "member_id": user.id,
         "groub_id": response.first['id'],
       });
       await groubChatRepoAbs.uploadFile(

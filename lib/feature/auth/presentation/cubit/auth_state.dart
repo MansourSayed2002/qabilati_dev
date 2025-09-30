@@ -7,7 +7,11 @@ final class AuthInitial extends AuthState {}
 
 final class LogInLoading extends AuthState {}
 
-final class LogInSuccess extends AuthState {}
+final class LogInSuccess extends AuthState {
+  final UserModel userModel;
+
+  LogInSuccess({required this.userModel});
+}
 
 final class LogInError extends AuthState {}
 
