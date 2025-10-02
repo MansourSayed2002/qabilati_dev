@@ -10,15 +10,13 @@ class GetAllPostsUsecase {
 
   late PostRepoAbs postRepoAbs;
 
-  Future<ApiResult> getAllPosts() async {
+  Future<ApiResult> getAllPosts({int offsetCount = 0}) async {
     try {
-      List response = await postRepoAbs.getPosts();
+      List response = await postRepoAbs.getPosts(offsetCount: offsetCount);
       if (response.isNotEmpty) {
-        List<PostsModel> data = [];
-        data.addAll(response.map((e) => PostsModel.fromJson(e)));
-        return ApiSuccess(data);
+        return ApiSuccess(response.map((e) => PostModel.fromJson(e)).toList());
       } else {
-        return ApiFailure(StatusRequest.nodatafailure);
+        return ApiSuccess([]);
       }
     } catch (e) {
       log(e.toString());

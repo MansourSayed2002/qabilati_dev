@@ -165,5 +165,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "credit_card": MessageLookupByLibrary.simpleMessage("Credit card"),
     "money_by_phone": MessageLookupByLibrary.simpleMessage("Money by phone"),
+    "post_details": MessageLookupByLibrary.simpleMessage("Post details"),
+
   };
 }

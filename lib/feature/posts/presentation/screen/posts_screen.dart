@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:qabilati/core/extension/navigator_app.dart';
 import 'package:qabilati/core/get_it/get_it.dart';
+import 'package:qabilati/core/shared/skeletonizer_loading_widget.dart';
 import 'package:qabilati/core/theme/color_app.dart';
 import 'package:qabilati/feature/posts/presentation/cubit/posts_cubit.dart';
+import 'package:qabilati/feature/posts/presentation/screen/post_details_screen.dart';
 import 'package:qabilati/feature/posts/presentation/widget/card_posts.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class PostsScreen extends StatelessWidget {
   const PostsScreen({super.key});
@@ -34,51 +38,72 @@ class _CustomBodyState extends State<CustomBody> {
   ScrollController scrollController = ScrollController();
   @override
   void initState() {
-    scrollController.addListener(() {
-      if (scrollController.position.pixels >=
-          scrollController.position.maxScrollExtent - 200) {
-        final cubit = getIt<PostsCubit>();
-        if (cubit.isPagination) {
-          cubit.pagination();
-        }
-      }
-    });
-
+    scrollListener();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<PostsCubit, PostsState>(
+      buildWhen:
+          (previous, current) =>
+              current is PostsSuccess ||
+              current is PostsLoading ||
+              current is PostsError,
       builder: (context, state) {
-        if (state is PostsSuccess) {
-          return Expanded(
-            child: ListView.builder(
-              controller: scrollController,
-              itemCount: state.post.length,
-              physics: BouncingScrollPhysics(),
-              itemBuilder: (context, index) {
-                if (index < state.post.length - 1) {
-                  return CardPosts(
-                    username: state.post[index].userName.toString(),
-                    post: state.post[index].postText.toString(),
-                    image: state.post[index].userImage.toString(),
-                  );
-                } else {
-                  return Center(
-                    child: CircularProgressIndicator(color: ColorApp.coral),
-                  );
-                }
-              },
-            ),
-          );
-        } else if (state is PostsLoading) {
-          return Center(
-            child: CircularProgressIndicator(color: ColorApp.coral),
-          );
-        }
-        return Text("لا يوجد بيانات");
+        return Skeletonizer(
+          enabled: state is PostsLoading,
+          child:
+              state is PostsSuccess
+                  ? ListView.builder(
+                    controller: scrollController,
+                    itemCount:
+                        state.isPagination
+                            ? state.post.length + 1
+                            : state.post.length,
+                    physics: BouncingScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      if (index < state.post.length) {
+                        return CardPosts(
+                          username: state.post[index].userName.toString(),
+                          post: state.post[index].postContent.toString(),
+                          image: state.post[index].userImage.toString(),
+                          onTap: () {
+                            context.push(
+                              PostDetailsScreen(post: state.post[index]),
+                            );
+                          },
+                        );
+                      } else {
+                        return Center(
+                          child: CircularProgressIndicator(
+                            color: ColorApp.coral,
+                          ),
+                        );
+                      }
+                    },
+                  )
+                  : SkeletonizerLoadingWidget(),
+        );
       },
     );
+  }
+
+  void scrollListener() {
+    scrollController.addListener(() {
+      if (scrollController.position.pixels >=
+          scrollController.position.maxScrollExtent - 100) {
+        final cubit = getIt<PostsCubit>();
+        if (!cubit.isLoadingMore && cubit.hasMoreData) {
+          cubit.getPaginationPosts();
+        }
+      }
+    });
   }
 }

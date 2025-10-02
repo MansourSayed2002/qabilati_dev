@@ -8,7 +8,7 @@ final class PostsInitial extends PostsState {}
 final class PostsLoading extends PostsState {}
 
 final class PostsSuccess extends PostsState {
-  final List<PostsModel> post;
+  final List<PostModel> post;
   final bool isPagination;
   PostsSuccess({required this.isPagination, required this.post});
 }

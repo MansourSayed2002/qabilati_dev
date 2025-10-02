@@ -46,5 +46,5 @@ class FuncAppDb {
   static const String getFriends = "get_friends";
   static const String getPandingFriendsRequest = "get_pending_friend_request";
   static const String getIdNotifi = "get_id_notifi";
-  
+  static const String getFriendPosts = "get_friends_posts";
 }

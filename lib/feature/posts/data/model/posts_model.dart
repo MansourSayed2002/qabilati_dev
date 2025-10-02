@@ -1,59 +1,61 @@
-class PostsModel {
+class PostModel {
   int? postId;
   int? postOwner;
-  int? imagePostId;
-  String? postText;
+  String? postContent;
   int? postType;
-  String? postImage;
-  String? postTime;
+  List<String>? images;
   String? userImage;
   String? userName;
-  String? userEmail;
+  String? userEmailgoogle;
   String? userPhone;
   String? userUuid;
+  String? createdAt;
 
-  PostsModel({
+  PostModel({
     this.postId,
     this.postOwner,
-    this.imagePostId,
-    this.postText,
+    this.postContent,
     this.postType,
-    this.postImage,
-    this.postTime,
+    this.images,
     this.userImage,
     this.userName,
-    this.userEmail,
+    this.userEmailgoogle,
     this.userPhone,
     this.userUuid,
+    this.createdAt,
   });
 
-  PostsModel.fromJson(Map<String, dynamic> json) {
-    postId = json['post_id'];
+  PostModel.fromJson(Map<String, dynamic> json) {
+    postId = json['id'];
     postOwner = json['post_owner'];
-    imagePostId = json['image_post_id'];
-    postText = json['post_content'];
+    postContent = json['post_content'];
     postType = json['post_type'];
-    postImage = json['image'];
-    postTime = json['created_at'];
+    if (json['images'] != null) {
+      images = List<String>.from(json['images']);
+    }
     userImage = json['user_image'];
     userName = json['user_name'];
-    userEmail = json['user_emailgoogle'];
+    userEmailgoogle = json['user_emailgoogle'];
     userPhone = json['user_phone'];
     userUuid = json['user_uuid'];
+    createdAt = json['created_at'];
   }
 
-  toJson(PostsModel postsModel) => {
-    'post_id': postsModel.postId,
-    'post_owner': postsModel.postOwner,
-    'image_post_id': postsModel.imagePostId,
-    'post_content': postsModel.postText,
-    'post_type': postsModel.postType,
-    'image': postsModel.postImage,
-    'created_at': postsModel.postTime,
-    'user_image': postsModel.userImage,
-    'user_name': postsModel.userName,
-    'user_emailgoogle': postsModel.userEmail,
-    'user_phone': postsModel.userPhone,
-    'user_uuid': postsModel.userUuid,
-  };
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = postId;
+    data['post_owner'] = postOwner;
+    data['post_content'] = postContent;
+    data['post_type'] = postType;
+    if (images != null) {
+      data['image'] = images;
+    }
+    data['user_image'] = userImage;
+    data['user_name'] = userName;
+    data['user_emailgoogle'] = userEmailgoogle;
+    data['user_phone'] = userPhone;
+    data['user_uuid'] = userUuid;
+    data['created_at'] = createdAt;
+    return data;
+  }
 }

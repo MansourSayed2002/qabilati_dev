@@ -85,7 +85,8 @@
     "amount_add":"Amount to be added",
     "choose_payment":"Choose payment method",
     "credit_card":"Credit card",
-    "money_by_phone":"Money by phone"
+    "money_by_phone":"Money by phone",
+    "post_details":"Post details"
 
 
 

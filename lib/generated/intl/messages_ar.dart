@@ -162,5 +162,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "choose_payment": MessageLookupByLibrary.simpleMessage("اختر طريقه الدفع "),
     "credit_card": MessageLookupByLibrary.simpleMessage("بطاقة الائتمان"),
     "money_by_phone": MessageLookupByLibrary.simpleMessage("المال عبر الهاتف"),
+    "post_details": MessageLookupByLibrary.simpleMessage("تفاصيل المنشور"),
   };
 }

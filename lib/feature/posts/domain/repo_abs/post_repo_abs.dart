@@ -1,3 +1,3 @@
 abstract class PostRepoAbs {
-  Future getPosts();
+  Future getPosts({int offsetCount});
 }

@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:qabilati/core/class/api_result.dart';
-import 'package:qabilati/core/function/pagination.dart';
+import 'package:qabilati/core/function/get_unique_new_posts.dart';
 import 'package:qabilati/feature/posts/data/model/posts_model.dart';
 import 'package:qabilati/feature/posts/domain/usecase/get_all_posts_usecase.dart';
 
@@ -12,42 +12,47 @@ class PostsCubit extends Cubit<PostsState> {
 
   late GetAllPostsUsecase getAllPostsUsecase;
 
-  bool isPagination = false;
+  bool hasMoreData = true;
 
-  List<PostsModel> posts = [];
-  List<PostsModel> paginationPosts = [];
+  bool isLoadingMore = false;
 
-  Future<void> getAllPosts() async {
+  List<PostModel> posts = [];
+
+  Future<void> getAllPosts({int offsetCount = 0}) async {
     emit(PostsLoading());
-    isPagination = true;
-    var response = await getAllPostsUsecase.getAllPosts();
+    posts.clear();
+    var response = await getAllPostsUsecase.getAllPosts(
+      offsetCount: offsetCount,
+    );
     if (response is ApiSuccess) {
-      posts = response.data;
-      paginationPosts = paginationPost(
-        point: paginationPosts.length,
-        data: posts,
-        limit: 4,
-      );
-
-      emit(PostsSuccess(post: paginationPosts, isPagination: false));
+      posts.addAll(response.data);
+      hasMoreData = response.data.isNotEmpty;
+      emit(PostsSuccess(post: posts, isPagination: hasMoreData));
     } else if (response is ApiFailure) {
       emit(PostsError());
     }
   }
 
-  pagination() {
-    isPagination = true;
-    final data = paginationPost(
-      point: paginationPosts.length,
-      data: posts,
-      limit: 4,
+  Future<void> getPaginationPosts() async {
+    if (isLoadingMore || !hasMoreData) return;
+    isLoadingMore = true;
+    var response = await getAllPostsUsecase.getAllPosts(
+      offsetCount: posts.length,
     );
-    if (data.isEmpty) {
-      isPagination = false;
-      return;
+    if (response is ApiSuccess) {
+      if (response.data.isEmpty) {
+        hasMoreData = false;
+      } else {
+        final newPosts = response.data;
+        final uniqueNewPosts = getUniqueNewPosts(
+          newPosts: newPosts,
+          posts: posts,
+        );
+        posts.addAll(uniqueNewPosts);
+        hasMoreData = true;
+      }
+      emit(PostsSuccess(post: posts, isPagination: hasMoreData));
     }
-    paginationPosts.addAll(data);
-    isPagination = false;
-    emit(PostsSuccess(post: paginationPosts, isPagination: false));
+    isLoadingMore = false;
   }
 }

@@ -715,6 +715,16 @@ class S {
     );
   }
 
+  /// `post_details`
+  String get post_details {
+    return Intl.message(
+      "Post details",
+      name: 'post_details',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `withdraw_unds`
   String get withdraw_unds {
     return Intl.message(
