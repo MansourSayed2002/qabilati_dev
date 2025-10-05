@@ -4,6 +4,14 @@
 
 Qabilati is a comprehensive social communication application built with Flutter. It enables users to connect with friends and communities through real-time chat, group conversations, voice/video calls, and more, all powered by a robust Supabase backend.
 
+## 🖼️ Pictures from the application
+
+### 🔐 splash page
+![splash_native](screenshots/5994846765880297689.jpg)
+### 🔐 auth page
+![splash_native](screenshots/6001255986662328124.jpg)
+
+
 ## Features
 
 -   **Authentication**: Secure user registration, login, and email verification.
