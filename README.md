@@ -8,10 +8,43 @@ Qabilati is a comprehensive social communication application built with Flutter.
 
 ### 🔐 splash page
 ![splash_native](screenshots/5994846765880297689.jpg)
+### 🔐 onboarding page
+![splash_native](screenshots/6001255986662328123.jpg)
 ### 🔐 auth page
 ![splash_native](screenshots/6001255986662328124.jpg)
-
-
+![splash_native](screenshots/6001255986662328125.jpg)
+![splash_native](screenshots/6001255986662328121.jpg)
+![splash_native](screenshots/6001255986662328118.jpg)
+![splash_native](screenshots/6001255986662328119.jpg)
+### 🔐 home page
+![splash_native](screenshots/5994846765880297669.jpg)
+### 🔐 friend page
+![splash_native](screenshots/5994846765880297668.jpg)
+![splash_native](screenshots/6001255986662328115.jpg)
+![splash_native](screenshots/6001255986662328117.jpg)
+![splash_native](screenshots/6001255986662328113.jpg)
+![splash_native](screenshots/6001255986662328112.jpg)
+![splash_native](screenshots/6001255986662328114.jpg)
+### 🔐 chat groub page
+![splash_native](screenshots/6001255986662328116.jpg)
+### 🔐 chat page
+![splash_native](screenshots/6001255986662328120.jpg)
+### 🔐 posts page
+![splash_native](screenshots/5987793248464261837.jpg)
+![splash_native](screenshots/5981090299163822918.jpg)
+![splash_native](screenshots/5981090299163822919.jpg)
+### 🔐 me page
+![splash_native](screenshots/5994846765880297666.jpg)
+### 🔐 wallet page
+![splash_native](screenshots/5987793248464261838.jpg)
+![splash_native](screenshots/5987793248464261840.jpg)
+![splash_native](screenshots/5987793248464261839.jpg)
+![splash_native](screenshots/5981090299163822920.jpg)
+![splash_native](screenshots/5981090299163822921.jpg)
+### 🔐 qr code page
+![splash_native](screenshots/5994846765880297662.jpg)
+### 🔐 search page
+![splash_native](screenshots/5994846765880297661.jpg)
 ## Features
 
 -   **Authentication**: Secure user registration, login, and email verification.
